@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc1rtj0unyyc8"
-path="res://.godot/imported/factory_sheet-RED_720.png-0d967ba753184ede337dac3be5e46ad5.ctex"
+uid="uid://cnkhmkmyudlt0"
+path="res://.godot/imported/command_center_sheet-GRN_720.png-0fa8d4a5198b048a4076816fd3f3c503.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/red/factory_sheet-RED_720.png"
-dest_files=["res://.godot/imported/factory_sheet-RED_720.png-0d967ba753184ede337dac3be5e46ad5.ctex"]
+source_file="res://assets/sprites/green/command_center_sheet-GRN_720.png"
+dest_files=["res://.godot/imported/command_center_sheet-GRN_720.png-0fa8d4a5198b048a4076816fd3f3c503.ctex"]
 
 [params]
 

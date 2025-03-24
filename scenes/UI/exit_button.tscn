@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c658xujbomggh"]
+
+[ext_resource type="Script" uid="uid://cxd2d7o1swyvl" path="res://scripts/exit_button.gd" id="1_5su1s"]
+[ext_resource type="Theme" uid="uid://b5jd8uca7qw0h" path="res://assets/themes/button.tres" id="1_ochul"]
+
+[node name="ExitButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonBackground" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme = ExtResource("1_ochul")
+
+[node name="Button" type="Button" parent="ButtonBackground"]
+layout_mode = 2
+theme = ExtResource("1_ochul")
+text = "Exit"
+flat = true
+script = ExtResource("1_5su1s")
+
+[connection signal="pressed" from="ButtonBackground/Button" to="ButtonBackground/Button" method="_on_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxqws0xndxgnx"
-path="res://.godot/imported/abandoned_factory-720.png-9c3556d97cff37b2d931bc4322465fae.ctex"
+uid="uid://b3vkbobmyw0f6"
+path="res://.godot/imported/colonel-GRN_480.png-94672a16f5b4f9cd8afb81ef0c51336c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/neutral/abandoned_factory-720.png"
-dest_files=["res://.godot/imported/abandoned_factory-720.png-9c3556d97cff37b2d931bc4322465fae.ctex"]
+source_file="res://assets/sprites/green/colonel-GRN_480.png"
+dest_files=["res://.godot/imported/colonel-GRN_480.png-94672a16f5b4f9cd8afb81ef0c51336c.ctex"]
 
 [params]
 

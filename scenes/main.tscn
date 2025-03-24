@@ -1,8 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://y8yi2do7rvtc"]
+[gd_scene load_steps=6 format=3 uid="uid://y8yi2do7rvtc"]
 
+[ext_resource type="Script" uid="uid://dpaxe55cna383" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://mjwo0i6g12dy" path="res://scenes/background.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://bt4i50i4ni88" path="res://scripts/hud.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c658xujbomggh" path="res://scenes/UI/exit_button.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dts310ofgmb35" path="res://scenes/UI/pause_button.tscn" id="5_tbgi4"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_0wfyh")
 
-[node name="BackgroundSprite" parent="." instance=ExtResource("1_o5qli")]
+[node name="Background" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(640, 360)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_sugp2")
+
+[node name="ExitButton" parent="HUD" instance=ExtResource("4_jyhfs")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -160.0
+offset_top = -160.0
+offset_right = -160.0
+offset_bottom = -160.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PauseButton" parent="HUD" instance=ExtResource("5_tbgi4")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -160.0
+grow_horizontal = 1
+grow_vertical = 0

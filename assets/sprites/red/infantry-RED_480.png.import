@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3vkbobmyw0f6"
-path="res://.godot/imported/colonel-GRN_480.png-cfba670a12654852af4ee2a90be61a8e.ctex"
+uid="uid://b3uhe8li4gpnw"
+path="res://.godot/imported/infantry-RED_480.png-87516be7252ab3ee3b32089f4f6e7616.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/green/colonel-GRN_480.png"
-dest_files=["res://.godot/imported/colonel-GRN_480.png-cfba670a12654852af4ee2a90be61a8e.ctex"]
+source_file="res://assets/sprites/red/infantry-RED_480.png"
+dest_files=["res://.godot/imported/infantry-RED_480.png-87516be7252ab3ee3b32089f4f6e7616.ctex"]
 
 [params]
 

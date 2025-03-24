@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5kk6qxg1ei4s"
-path="res://.godot/imported/defense_tower-GRN_720.png-93c8a16a4e5bf72cca4310be9207d3ef.ctex"
+uid="uid://dej557oe8sexs"
+path="res://.godot/imported/barracks-GRN_720.png-c0679c1d6f544051a7258e731228e05f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/green/defense_tower-GRN_720.png"
-dest_files=["res://.godot/imported/defense_tower-GRN_720.png-93c8a16a4e5bf72cca4310be9207d3ef.ctex"]
+source_file="res://assets/sprites/green/barracks-GRN_720.png"
+dest_files=["res://.godot/imported/barracks-GRN_720.png-c0679c1d6f544051a7258e731228e05f.ctex"]
 
 [params]
 

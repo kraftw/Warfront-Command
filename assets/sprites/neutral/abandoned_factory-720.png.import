@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3uhe8li4gpnw"
-path="res://.godot/imported/infantry-RED_480.png-29929edb7862ac6a96a572e0053c5107.ctex"
+uid="uid://cxqws0xndxgnx"
+path="res://.godot/imported/abandoned_factory-720.png-597a85f2df0029ed534e103430b30cc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/red/infantry-RED_480.png"
-dest_files=["res://.godot/imported/infantry-RED_480.png-29929edb7862ac6a96a572e0053c5107.ctex"]
+source_file="res://assets/sprites/neutral/abandoned_factory-720.png"
+dest_files=["res://.godot/imported/abandoned_factory-720.png-597a85f2df0029ed534e103430b30cc5.ctex"]
 
 [params]
 

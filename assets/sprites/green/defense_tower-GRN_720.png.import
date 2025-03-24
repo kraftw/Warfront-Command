@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvp35ke5t5ae4"
-path="res://.godot/imported/defense_tower-RED_720.png-21bf277e1609a01d0b20f0081ef10b3a.ctex"
+uid="uid://5kk6qxg1ei4s"
+path="res://.godot/imported/defense_tower-GRN_720.png-e3f1bbe66c7e6c2dc42c8f1fc6c77488.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/red/defense_tower-RED_720.png"
-dest_files=["res://.godot/imported/defense_tower-RED_720.png-21bf277e1609a01d0b20f0081ef10b3a.ctex"]
+source_file="res://assets/sprites/green/defense_tower-GRN_720.png"
+dest_files=["res://.godot/imported/defense_tower-GRN_720.png-e3f1bbe66c7e6c2dc42c8f1fc6c77488.ctex"]
 
 [params]
 

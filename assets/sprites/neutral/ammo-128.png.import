@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b577noxe4vtue"
-path="res://.godot/imported/colonel-RED_480.png-da1a4d64af541332d482ba22f3250edb.ctex"
+uid="uid://bvw31p7bbco6o"
+path="res://.godot/imported/ammo-128.png-eba47d76b6a04f627d8b88330a35130d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/red/colonel-RED_480.png"
-dest_files=["res://.godot/imported/colonel-RED_480.png-da1a4d64af541332d482ba22f3250edb.ctex"]
+source_file="res://assets/sprites/neutral/ammo-128.png"
+dest_files=["res://.godot/imported/ammo-128.png-eba47d76b6a04f627d8b88330a35130d.ctex"]
 
 [params]
 

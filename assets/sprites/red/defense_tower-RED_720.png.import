@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvw31p7bbco6o"
-path="res://.godot/imported/ammo-128.png-0b89d937ab7f171a59239ffab357af8a.ctex"
+uid="uid://dvp35ke5t5ae4"
+path="res://.godot/imported/defense_tower-RED_720.png-2daa05139ad672ae71ebeb9700e52f64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/neutral/ammo-128.png"
-dest_files=["res://.godot/imported/ammo-128.png-0b89d937ab7f171a59239ffab357af8a.ctex"]
+source_file="res://assets/sprites/red/defense_tower-RED_720.png"
+dest_files=["res://.godot/imported/defense_tower-RED_720.png-2daa05139ad672ae71ebeb9700e52f64.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6ryeeqq0hw6q"
-path="res://.godot/imported/background-1280x720.png-6ea6e90e3f0c076f5fbad7b4fccda3db.ctex"
+uid="uid://b0yahj07y2r5b"
+path="res://.godot/imported/command_center_sheet-RED_720.png-aedd888b01288ed2e78e6c0b212f0385.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/neutral/background-1280x720.png"
-dest_files=["res://.godot/imported/background-1280x720.png-6ea6e90e3f0c076f5fbad7b4fccda3db.ctex"]
+source_file="res://assets/sprites/red/command_center_sheet-RED_720.png"
+dest_files=["res://.godot/imported/command_center_sheet-RED_720.png-aedd888b01288ed2e78e6c0b212f0385.ctex"]
 
 [params]
 
