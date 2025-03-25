@@ -1,7 +1,16 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dvmmdpnv2q6cu"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dvmmdpnv2q6cu"]
 
 [ext_resource type="StyleBox" uid="uid://bfnd8gkws0sb7" path="res://assets/themes/menu/menu_stylebox.tres" id="1_umsul"]
+[ext_resource type="StyleBox" uid="uid://di1nluccllk3m" path="res://assets/themes/button/button_hover.tres" id="1_ytyv3"]
+[ext_resource type="StyleBox" uid="uid://binvhm1oyyakd" path="res://assets/themes/button/button_normal.tres" id="2_pthj0"]
+[ext_resource type="StyleBox" uid="uid://l6mmwe2n55q8" path="res://assets/themes/button/button_pressed.tres" id="3_4ewia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtvuh"]
 
 [resource]
 default_font_size = 28
+Button/styles/focus = SubResource("StyleBoxEmpty_gtvuh")
+Button/styles/hover = ExtResource("1_ytyv3")
+Button/styles/normal = ExtResource("2_pthj0")
+Button/styles/pressed = ExtResource("3_4ewia")
 PanelContainer/styles/panel = ExtResource("1_umsul")
