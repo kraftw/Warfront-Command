@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dvmmdpnv2q6cu"]
+
+[ext_resource type="StyleBox" uid="uid://bfnd8gkws0sb7" path="res://assets/themes/menu/menu_stylebox.tres" id="1_umsul"]
+
+[resource]
+default_font_size = 28
+PanelContainer/styles/panel = ExtResource("1_umsul")

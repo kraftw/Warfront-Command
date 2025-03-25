@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://sirb86oah0ww"]
+
+[ext_resource type="Script" uid="uid://6mpt0booox8v" path="res://scripts/build_menu.gd" id="1_c61gh"]
+[ext_resource type="Theme" uid="uid://b5jd8uca7qw0h" path="res://assets/themes/button/button.tres" id="1_fjt77"]
+[ext_resource type="Theme" uid="uid://dvmmdpnv2q6cu" path="res://assets/themes/menu/menu.tres" id="1_wbqqa"]
+[ext_resource type="Texture2D" uid="uid://bmti406pcbkq8" path="res://assets/icons/icons8-chevron-down-64.png" id="2_fjt77"]
+[ext_resource type="StyleBox" uid="uid://di1nluccllk3m" path="res://assets/themes/button/button_hover.tres" id="3_du74h"]
+[ext_resource type="StyleBox" uid="uid://l6mmwe2n55q8" path="res://assets/themes/button/button_pressed.tres" id="4_fca66"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x7m56"]
+
+[node name="BuildMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c61gh")
+
+[node name="ButtonContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 336.0
+offset_right = 432.0
+offset_bottom = 48.0
+theme = ExtResource("1_fjt77")
+metadata/_edit_group_ = true
+
+[node name="HideButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x7m56")
+theme_override_styles/hover_pressed = ExtResource("3_du74h")
+theme_override_styles/hover = ExtResource("3_du74h")
+theme_override_styles/pressed = ExtResource("4_fca66")
+toggle_mode = true
+icon = ExtResource("2_fjt77")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="SubContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 688.0
+offset_bottom = 88.0
+theme = ExtResource("1_wbqqa")
+
+[node name="MainContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 768.0
+offset_bottom = 192.0
+theme = ExtResource("1_wbqqa")
+
+[connection signal="toggled" from="ButtonContainer/HideButton" to="." method="_on_hide_button_toggled"]

@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dts310ofgmb35"]
+[gd_scene load_steps=6 format=3 uid="uid://dts310ofgmb35"]
 
-[ext_resource type="Theme" uid="uid://b5jd8uca7qw0h" path="res://assets/themes/button.tres" id="1_4ks8w"]
+[ext_resource type="Theme" uid="uid://b5jd8uca7qw0h" path="res://assets/themes/button/button.tres" id="1_otvjb"]
+[ext_resource type="StyleBox" uid="uid://di1nluccllk3m" path="res://assets/themes/button/button_hover.tres" id="2_4ks8w"]
+[ext_resource type="StyleBox" uid="uid://l6mmwe2n55q8" path="res://assets/themes/button/button_pressed.tres" id="2_6rsu1"]
+[ext_resource type="Texture2D" uid="uid://sbkfi3uvidk5" path="res://assets/icons/icons8-pause-100.png" id="4_otvjb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8e8d"]
 
 [node name="PauseButton" type="Control"]
 layout_mode = 3
@@ -14,10 +19,16 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0
-theme = ExtResource("1_4ks8w")
+theme = ExtResource("1_otvjb")
+metadata/_edit_group_ = true
 
 [node name="Button" type="Button" parent="ButtonBackground"]
 layout_mode = 2
-theme = ExtResource("1_4ks8w")
-text = "Pause"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f8e8d")
+theme_override_styles/hover_pressed = ExtResource("2_6rsu1")
+theme_override_styles/hover = ExtResource("2_4ks8w")
+theme_override_styles/pressed = ExtResource("2_6rsu1")
+icon = ExtResource("4_otvjb")
 flat = true
+icon_alignment = 1
+expand_icon = true
