@@ -12,7 +12,6 @@ script = ExtResource("1_0wfyh")
 
 [node name="Background" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(640, 360)
-scale = Vector2(1, 1)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_sugp2")
@@ -54,6 +53,8 @@ offset_bottom = -192.0
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="FactoryTimer" type="Timer" parent="."]
 
 [node name="Structures" type="Node" parent="."]
 
