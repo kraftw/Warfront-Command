@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdtmod4s1l2o0"]
+
+[ext_resource type="Texture2D" uid="uid://b10oh5pqdmwva" path="res://assets/sprites/green/factory_static-GRN_720.png" id="1_f655e"]
+[ext_resource type="Texture2D" uid="uid://b5g8ngpl15okn" path="res://assets/sprites/green/factory_sheet-GRN_720.png" id="1_j5av5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5av5"]
+atlas = ExtResource("1_j5av5")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f655e"]
+atlas = ExtResource("1_j5av5")
+region = Rect2(720, 0, 720, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aiq47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5av5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f655e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Factory" type="Node2D"]
+
+[node name="Preview" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.490196)
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("1_f655e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(4.06901e-06, -5.72205e-06)
+scale = Vector2(0.133333, 0.133333)
+sprite_frames = SubResource("SpriteFrames_aiq47")
+frame_progress = 0.129016

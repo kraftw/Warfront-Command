@@ -3,16 +3,7 @@
 [ext_resource type="Theme" uid="uid://b5jd8uca7qw0h" path="res://assets/themes/button/button.tres" id="1_otvjb"]
 [ext_resource type="Texture2D" uid="uid://sbkfi3uvidk5" path="res://assets/icons/icons8-pause-100.png" id="4_otvjb"]
 
-[node name="PauseButton" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 2
+[node name="PauseButton" type="Button"]
 offset_right = 80.0
 offset_bottom = 80.0
 theme = ExtResource("1_otvjb")

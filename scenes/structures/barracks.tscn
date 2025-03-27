@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bamhongeqtc2k"]
+
+[ext_resource type="Texture2D" uid="uid://dej557oe8sexs" path="res://assets/sprites/green/barracks-GRN_720.png" id="1_a5bx4"]
+
+[node name="Barracks" type="Node2D"]
+
+[node name="Preview" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.490196)
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("1_a5bx4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(0.133333, 0.133333)
+texture = ExtResource("1_a5bx4")

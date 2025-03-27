@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dpaxe55cna383" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://mjwo0i6g12dy" path="res://scenes/background.tscn" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://bt4i50i4ni88" path="res://scripts/hud.gd" id="3_sugp2"]
-[ext_resource type="PackedScene" uid="uid://c658xujbomggh" path="res://scenes/UI/exit_button.tscn" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://dts310ofgmb35" path="res://scenes/UI/pause_button.tscn" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://bt4i50i4ni88" path="res://scripts/UI/hud.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c658xujbomggh" path="res://scenes/UI/buttons/exit_button.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dts310ofgmb35" path="res://scenes/UI/buttons/pause_button.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://sirb86oah0ww" path="res://scenes/UI/build_menu.tscn" id="6_tefeu"]
 
 [node name="Main" type="Node2D"]
@@ -20,10 +20,12 @@ script = ExtResource("3_sugp2")
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
-offset_left = -96.0
-offset_top = -96.0
-offset_right = -96.0
-offset_bottom = -96.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -112.0
+offset_right = -16.0
+offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -32,12 +34,11 @@ size_flags_vertical = 4
 [node name="PauseButton" parent="HUD" instance=ExtResource("5_tbgi4")]
 anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.0
+anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = -96.0
-offset_right = 16.0
-offset_bottom = -96.0
-grow_horizontal = 1
+offset_top = -112.0
+offset_right = 112.0
+offset_bottom = -16.0
 grow_vertical = 0
 
 [node name="BuildMenu" parent="HUD" instance=ExtResource("6_tefeu")]
@@ -52,3 +53,7 @@ offset_bottom = -192.0
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Structures" type="Node" parent="."]
+
+[node name="Units" type="Node" parent="."]

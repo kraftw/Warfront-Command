@@ -1,19 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://c658xujbomggh"]
 
-[ext_resource type="Script" uid="uid://cxd2d7o1swyvl" path="res://scripts/exit_button.gd" id="1_5su1s"]
+[ext_resource type="Script" uid="uid://cxd2d7o1swyvl" path="res://scripts/UI/exit_button.gd" id="1_5su1s"]
 [ext_resource type="Theme" uid="uid://b5jd8uca7qw0h" path="res://assets/themes/button/button.tres" id="1_42ovy"]
 [ext_resource type="Texture2D" uid="uid://dyj8vw6hw313g" path="res://assets/icons/icons8-exit-100.png" id="4_42ovy"]
 
-[node name="ExitButton" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 2
+[node name="ExitButton" type="Button"]
 offset_right = 80.0
 offset_bottom = 80.0
 theme = ExtResource("1_42ovy")
@@ -22,4 +13,4 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_5su1s")
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
