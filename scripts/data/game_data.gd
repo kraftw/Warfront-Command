@@ -1,6 +1,9 @@
 extends Node
 
-enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND, NODE }
+var is_game_running: bool = true
+var time_elapsed: float = 0.0
+
+enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 
 @export var structures = {
 	StructureType.ATTACK: {
@@ -25,12 +28,6 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND, NODE }
 			"name": "Command Center",
 			"cost": null,
 			"icon": preload("res://assets/sprites/green/command_center_static-GRN_720.png"),
-			"scene": null,
-	},
-	StructureType.NODE: {
-			"name": "Abandoned Factory",
-			"cost": null,
-			"icon": preload("res://assets/sprites/neutral/abandoned_factory-720.png"),
 			"scene": null,
 	},
 }

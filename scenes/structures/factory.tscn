@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdtmod4s1l2o0"]
+[gd_scene load_steps=7 format=3 uid="uid://bdtmod4s1l2o0"]
 
+[ext_resource type="Script" uid="uid://wewpj3fdmyro" path="res://scripts/structures/factory.gd" id="1_0g0nb"]
 [ext_resource type="Texture2D" uid="uid://b10oh5pqdmwva" path="res://assets/sprites/green/factory_static-GRN_720.png" id="1_f655e"]
 [ext_resource type="Texture2D" uid="uid://b5g8ngpl15okn" path="res://assets/sprites/green/factory_sheet-GRN_720.png" id="1_j5av5"]
 
@@ -26,6 +27,7 @@ animations = [{
 }]
 
 [node name="Factory" type="Node2D"]
+script = ExtResource("1_0g0nb")
 
 [node name="Preview" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.490196)

@@ -1,30 +1,45 @@
 extends Node2D
 
-@export var factory_cooldown: float = 2.5
-@export var factory_generation_amount: int = 50
+#region EXPORT VARIABLES
+@export var tick_interval: float = 0.5
+@export var barracks_interval: float = 3.5
+@export var factory_interval: float = 2.5
+@export var factory_generation_amount: int = 25
+#endregion
 
+#region ONREADY VARIABLES
 @onready var build_menu = $HUD/BuildMenu
 @onready var player_side = $Background/PlayerSide
 @onready var opponent_side = $Background/OpponentSide
-@onready var factory_timer = $FactoryTimer
+@onready var game_timer = $GameTimer
+#endregion
 
+#region REGULAR VARIABLES
 var structure_instance = null
 var local_structure_type = null
 var placement_position = null
 var is_placing: bool = false
 var is_placeable: bool = false
 # var is_overlapping: bool = false # TODO
+#endregion
 
+#region GAME FUNCTIONS
 func _ready():
 #region SIGNAL CONNECTIONS
 	connect_signal(build_menu, "build_button_pressed")
 	connect_signal(player_side, "mouse_entered_player_side")
 	connect_signal(player_side, "mouse_exited_player_side")
 #endregion
-	gather_resources()
+	start_game_tick()
 
 func _process(_delta) -> void:
 	handle_placement(get_global_mouse_position())
+
+func start_game_tick():
+	game_timer.wait_time = tick_interval
+	game_timer.start()
+	game_timer.timeout.connect(_process_game_tick)
+#endregion
 
 #region BUILD FUNCTIONS
 func start_placement(structure_type: GameData.StructureType):
@@ -56,8 +71,13 @@ func confirm_placement():
 		structure_instance.position = placement_position
 		structure_instance.find_child("Preview").queue_free()
 		structure_instance.find_child("Sprite2D").show()
-		if local_structure_type == GameData.StructureType.RESOURCE:
-			structure_instance.add_to_group("factories")
+		
+		match local_structure_type:
+			GameData.StructureType.ATTACK:
+				structure_instance.add_to_group("barracks")
+			GameData.StructureType.RESOURCE:
+				structure_instance.add_to_group("factories")
+			
 		
 		PlayerData.ammo_count -= GameData.get_structure_cost(local_structure_type)
 		
@@ -82,9 +102,14 @@ func cancel_placement():
 
 #region STRUCTURE FUNCTIONS
 func gather_resources():
-	factory_timer.wait_time = factory_cooldown
-	factory_timer.start()
-	factory_timer.timeout.connect(_on_factory_timer_timeout)
+	if fmod(GameData.time_elapsed, factory_interval) == 0.0:
+		PlayerData.ammo_count += factory_generation_amount * get_tree().get_nodes_in_group("factories").size()
+
+func train_troops():
+	if fmod(GameData.time_elapsed, barracks_interval) == 0.0:
+		PlayerData.unit_count += get_tree().get_nodes_in_group("barracks").size()
+		PlayerData.infantry_count += get_tree().get_nodes_in_group("barracks").size()
+	print(PlayerData.unit_count)
 #endregion
 
 #region SIGNAL FUNCTIONS
@@ -105,10 +130,14 @@ func _on_mouse_exited_player_side_received():
 	if is_placing:
 		opponent_side.show()
 
-func _on_factory_timer_timeout():
-	PlayerData.ammo_count += factory_generation_amount * get_tree().get_nodes_in_group("factories").size()
-	factory_timer.wait_time
-	factory_timer.start()
+func _process_game_tick():
+	GameData.time_elapsed += tick_interval
+	
+	gather_resources()
+	train_troops()
+	
+	game_timer.wait_time
+	game_timer.start()
 #endregion
 
 #region HELPER FUNCTIONS
