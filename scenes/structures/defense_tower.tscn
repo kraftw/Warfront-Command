@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy7ktoqnsuwbl"]
+[gd_scene load_steps=3 format=3 uid="uid://dy7ktoqnsuwbl"]
 
 [ext_resource type="Texture2D" uid="uid://5kk6qxg1ei4s" path="res://assets/sprites/green/defense_tower-GRN_720.png" id="1_2rhrg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2rhrg"]
+radius = 96.0
 
 [node name="DefenseTower" type="Node2D"]
 
@@ -19,3 +22,9 @@ visible = false
 position = Vector2(-5.72205e-06, -5.72205e-06)
 scale = Vector2(0.133333, 0.133333)
 texture = ExtResource("1_2rhrg")
+
+[node name="AttackRadius" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource("CircleShape2D_2rhrg")

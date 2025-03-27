@@ -7,6 +7,20 @@ const SHOW_ICON = preload("res://assets/icons/icons8-chevron-up-64.png")
 
 signal build_button_pressed(structure_type: GameData.StructureType)
 
+func _ready():
+	initialize_costs()
+
+func _process(_delta) -> void:
+	update_labels()
+
+func initialize_costs():
+	$MainContainer/MarginContainer/HBoxContainer/BuildAttackButton/HBoxContainer/Cost.text = "Cost: " + str(GameData.get_structure_cost(GameData.StructureType.ATTACK))
+	$MainContainer/MarginContainer/HBoxContainer/BuildDefenseButton/HBoxContainer2/Cost.text = "Cost: " + str(GameData.get_structure_cost(GameData.StructureType.DEFENSE))
+	$MainContainer/MarginContainer/HBoxContainer/BuildResourceButton/HBoxContainer/Cost.text = "Cost: " + str(GameData.get_structure_cost(GameData.StructureType.RESOURCE))
+
+func update_labels():
+	$SubContainer/HBoxContainer/AmmoCountLabel.text = str(PlayerData.ammo_count)
+
 # BUTTON FUNCTIONS
 func _on_hide_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:

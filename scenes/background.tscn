@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://mjwo0i6g12dy"]
+[gd_scene load_steps=3 format=3 uid="uid://mjwo0i6g12dy"]
 
 [ext_resource type="Texture2D" uid="uid://c6ryeeqq0hw6q" path="res://assets/sprites/neutral/background-1280x720.png" id="1_bkp1e"]
+[ext_resource type="Script" uid="uid://bmwq3whgq4hs2" path="res://scripts/background.gd" id="2_y0upk"]
 
 [node name="Background" type="Sprite2D"]
 texture = ExtResource("1_bkp1e")
+
+[node name="PlayerSide" type="Area2D" parent="."]
+collision_layer = 16
+script = ExtResource("2_y0upk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSide"]
+polygon = PackedVector2Array(-640, -360, -512, -360, 640, 256, 640, 360, -640, 360)
+
+[node name="OpponentSide" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0, 0, 0.196078)
+polygon = PackedVector2Array(-512, -360, 640, -360, 640, 256)
+
+[connection signal="mouse_entered" from="PlayerSide" to="PlayerSide" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PlayerSide" to="PlayerSide" method="_on_mouse_exited"]

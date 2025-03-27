@@ -2,10 +2,10 @@ extends Node
 
 enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND, NODE }
 
-var structures = {
+@export var structures = {
 	StructureType.ATTACK: {
-			"name": "Barracks", 
-			"cost": 500, 
+			"name": "Barracks",
+			"cost": 500,
 			"icon": preload("res://assets/sprites/green/barracks-GRN_720.png"),
 			"scene": preload("res://scenes/structures/barracks.tscn"),
 	},

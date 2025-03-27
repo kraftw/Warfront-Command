@@ -12,6 +12,7 @@ script = ExtResource("1_0wfyh")
 
 [node name="Background" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(640, 360)
+scale = Vector2(1, 1)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_sugp2")
