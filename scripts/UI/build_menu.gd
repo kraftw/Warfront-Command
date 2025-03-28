@@ -11,14 +11,14 @@ func _ready():
 	initialize_costs()
 
 func _process(_delta) -> void:
-	update_labels()
+	update_ammo_count()
 
 func initialize_costs():
 	$MainContainer/MarginContainer/HBoxContainer/BuildAttackButton/HBoxContainer/Cost.text = "Cost: " + str(GameData.get_structure_cost(GameData.StructureType.ATTACK))
 	$MainContainer/MarginContainer/HBoxContainer/BuildDefenseButton/HBoxContainer2/Cost.text = "Cost: " + str(GameData.get_structure_cost(GameData.StructureType.DEFENSE))
 	$MainContainer/MarginContainer/HBoxContainer/BuildResourceButton/HBoxContainer/Cost.text = "Cost: " + str(GameData.get_structure_cost(GameData.StructureType.RESOURCE))
 
-func update_labels():
+func update_ammo_count():
 	$SubContainer/HBoxContainer/AmmoCountLabel.text = str(PlayerData.ammo_count)
 
 # BUTTON FUNCTIONS

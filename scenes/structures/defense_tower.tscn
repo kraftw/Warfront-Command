@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy7ktoqnsuwbl"]
+[gd_scene load_steps=6 format=3 uid="uid://dy7ktoqnsuwbl"]
 
 [ext_resource type="Texture2D" uid="uid://5kk6qxg1ei4s" path="res://assets/sprites/green/defense_tower-GRN_720.png" id="1_2rhrg"]
+[ext_resource type="Script" uid="uid://bffclkau86t8i" path="res://scripts/structures/defense_tower.gd" id="1_3aal5"]
+[ext_resource type="PackedScene" uid="uid://bjy8q1pfspkxx" path="res://scenes/UI/highlight.tscn" id="3_2mnvv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rhrg"]
+size = Vector2(64, 96)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2rhrg"]
 radius = 96.0
 
-[node name="DefenseTower" type="Node2D"]
+[node name="DefenseTower" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_3aal5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2rhrg")
 
 [node name="Preview" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.490196)
@@ -22,6 +33,11 @@ visible = false
 position = Vector2(-5.72205e-06, -5.72205e-06)
 scale = Vector2(0.133333, 0.133333)
 texture = ExtResource("1_2rhrg")
+
+[node name="Highlight" parent="." instance=ExtResource("3_2mnvv")]
+visible = false
+offset_left = -32.0
+offset_right = 32.0
 
 [node name="AttackRadius" type="Area2D" parent="."]
 collision_layer = 4

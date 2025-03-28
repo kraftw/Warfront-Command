@@ -8,6 +8,7 @@ texture = ExtResource("1_bkp1e")
 
 [node name="PlayerSide" type="Area2D" parent="."]
 collision_layer = 16
+collision_mask = 32
 script = ExtResource("2_y0upk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSide"]

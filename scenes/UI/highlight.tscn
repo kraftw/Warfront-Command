@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjy8q1pfspkxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgw8f"]
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 1, 1, 0.784314)
+border_blend = true
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="Highlight" type="PanelContainer"]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mgw8f")

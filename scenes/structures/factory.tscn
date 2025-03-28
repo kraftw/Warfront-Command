@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdtmod4s1l2o0"]
+[gd_scene load_steps=9 format=3 uid="uid://bdtmod4s1l2o0"]
 
 [ext_resource type="Script" uid="uid://wewpj3fdmyro" path="res://scripts/structures/factory.gd" id="1_0g0nb"]
 [ext_resource type="Texture2D" uid="uid://b10oh5pqdmwva" path="res://assets/sprites/green/factory_static-GRN_720.png" id="1_f655e"]
 [ext_resource type="Texture2D" uid="uid://b5g8ngpl15okn" path="res://assets/sprites/green/factory_sheet-GRN_720.png" id="1_j5av5"]
+[ext_resource type="PackedScene" uid="uid://bjy8q1pfspkxx" path="res://scenes/UI/highlight.tscn" id="3_aiq47"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g0nb"]
+size = Vector2(96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5av5"]
 atlas = ExtResource("1_j5av5")
@@ -26,8 +30,13 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Factory" type="Node2D"]
+[node name="Factory" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("1_0g0nb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0g0nb")
 
 [node name="Preview" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.490196)
@@ -45,3 +54,6 @@ position = Vector2(4.06901e-06, -5.72205e-06)
 scale = Vector2(0.133333, 0.133333)
 sprite_frames = SubResource("SpriteFrames_aiq47")
 frame_progress = 0.129016
+
+[node name="Highlight" parent="." instance=ExtResource("3_aiq47")]
+visible = false

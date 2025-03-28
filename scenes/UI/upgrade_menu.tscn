@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgnap1hl1500g"]
+
+[ext_resource type="StyleBox" uid="uid://di1nluccllk3m" path="res://assets/themes/button/button_hover.tres" id="1_hvk4m"]
+[ext_resource type="Script" uid="uid://cbhtrn06yitu5" path="res://scripts/UI/upgrade_menu.gd" id="1_s1ibb"]
+[ext_resource type="StyleBox" uid="uid://binvhm1oyyakd" path="res://assets/themes/button/button_normal.tres" id="2_s1ibb"]
+[ext_resource type="StyleBox" uid="uid://l6mmwe2n55q8" path="res://assets/themes/button/button_pressed.tres" id="3_d6n1g"]
+[ext_resource type="StyleBox" uid="uid://bfnd8gkws0sb7" path="res://assets/themes/menu/menu_stylebox.tres" id="4_3k78i"]
+[ext_resource type="Texture2D" uid="uid://bvw31p7bbco6o" path="res://assets/sprites/neutral/ammo-128.png" id="5_20s45"]
+[ext_resource type="PackedScene" uid="uid://b6sn1rvxar2b" path="res://scenes/UI/buttons/upgrade/upgrade_button_1.tscn" id="6_2jg1k"]
+[ext_resource type="PackedScene" uid="uid://vtgprk553hu6" path="res://scenes/UI/buttons/upgrade/upgrade_button_2.tscn" id="7_hvk4m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtvuh"]
+
+[sub_resource type="Theme" id="Theme_m88e3"]
+default_font_size = 28
+Button/styles/focus = SubResource("StyleBoxEmpty_gtvuh")
+Button/styles/hover = ExtResource("1_hvk4m")
+Button/styles/normal = ExtResource("2_s1ibb")
+Button/styles/pressed = ExtResource("3_d6n1g")
+PanelContainer/styles/panel = ExtResource("4_3k78i")
+
+[node name="UpgradeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s1ibb")
+
+[node name="SubContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 512.0
+offset_bottom = 56.0
+theme = SubResource("Theme_m88e3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="SubContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="AmmoIcon" type="TextureRect" parent="SubContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_20s45")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="SemicolonLabel" type="Label" parent="SubContainer/HBoxContainer"]
+layout_mode = 2
+text = ":"
+horizontal_alignment = 1
+
+[node name="AmmoCountLabel" type="Label" parent="SubContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 768.0
+offset_bottom = 160.0
+theme = SubResource("Theme_m88e3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="UpgradeButton1" parent="MainContainer/MarginContainer/HBoxContainer" instance=ExtResource("6_2jg1k")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpgradeButton2" parent="MainContainer/MarginContainer/HBoxContainer" instance=ExtResource("7_hvk4m")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RepairButton" type="Button" parent="MainContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 18
+text = "Repair Cost: Error"
+
+[node name="SellButton" type="Button" parent="MainContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 18
+text = "Sell Value: Error"

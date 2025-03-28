@@ -12,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://dxvxskgx4yciv" path="res://scenes/UI/buttons/build/build_defense_button.tscn" id="10_ydrcb"]
 [ext_resource type="PackedScene" uid="uid://hbwbxf8q4ek7" path="res://scenes/UI/buttons/build/build_resource_button.tscn" id="11_ydrcb"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtvuh"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydrcb"]
 
 [sub_resource type="Theme" id="Theme_gfd18"]
 default_font_size = 28
-Button/styles/focus = SubResource("StyleBoxEmpty_gtvuh")
+Button/styles/focus = SubResource("StyleBoxEmpty_ydrcb")
 Button/styles/hover = ExtResource("3_du74h")
 Button/styles/normal = ExtResource("8_ydrcb")
 Button/styles/pressed = ExtResource("4_fca66")

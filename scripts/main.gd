@@ -9,6 +9,7 @@ extends Node2D
 
 #region ONREADY VARIABLES
 @onready var build_menu = $HUD/BuildMenu
+@onready var upgrade_menu = $HUD/UpgradeMenu
 @onready var player_side = $Background/PlayerSide
 @onready var opponent_side = $Background/OpponentSide
 @onready var game_timer = $GameTimer
@@ -21,6 +22,7 @@ var placement_position = null
 var is_placing: bool = false
 var is_placeable: bool = false
 # var is_overlapping: bool = false # TODO
+var selected_structure = null
 #endregion
 
 #region GAME FUNCTIONS
@@ -34,6 +36,7 @@ func _ready():
 
 func _process(_delta) -> void:
 	handle_placement(get_global_mouse_position())
+	handle_deselect()
 
 func start_game_tick():
 	game_timer.wait_time = tick_interval
@@ -54,10 +57,10 @@ func start_placement(structure_type: GameData.StructureType):
 
 func handle_placement(mouse_position):
 	if is_placing:
-		if Input.is_action_pressed("cancel_placement"):
+		if Input.is_action_pressed("cancel"):
 			cancel_placement()
 	
-		if Input.is_action_pressed("confirm_placement"):
+		if Input.is_action_pressed("confirm"):
 			placement_position = get_global_mouse_position()
 			confirm_placement()
 		
@@ -77,7 +80,7 @@ func confirm_placement():
 				structure_instance.add_to_group("barracks")
 			GameData.StructureType.RESOURCE:
 				structure_instance.add_to_group("factories")
-			
+		connect_signal(structure_instance, "structure_selected")
 		
 		PlayerData.ammo_count -= GameData.get_structure_cost(local_structure_type)
 		
@@ -109,7 +112,19 @@ func train_troops():
 	if fmod(GameData.time_elapsed, barracks_interval) == 0.0:
 		PlayerData.unit_count += get_tree().get_nodes_in_group("barracks").size()
 		PlayerData.infantry_count += get_tree().get_nodes_in_group("barracks").size()
-	print(PlayerData.unit_count)
+
+func highlight_structure(structure):
+	structure.find_child("Highlight").show()
+
+func deselect_structure(structure):
+	structure.find_child("Highlight").hide()
+	upgrade_menu.hide()
+	build_menu.show()
+
+func handle_deselect():
+	if Input.is_action_pressed("cancel") and selected_structure:
+		deselect_structure(selected_structure)
+		selected_structure = null
 #endregion
 
 #region SIGNAL FUNCTIONS
@@ -136,8 +151,19 @@ func _process_game_tick():
 	gather_resources()
 	train_troops()
 	
+	@warning_ignore("standalone_expression")
 	game_timer.wait_time
 	game_timer.start()
+
+func _on_structure_selected_received(structure, structure_type):
+	if selected_structure:
+		deselect_structure(selected_structure)
+	
+	selected_structure = structure
+	highlight_structure(selected_structure)
+	build_menu.hide()
+	upgrade_menu.show()
+	upgrade_menu.update_buttons(structure_type)
 #endregion
 
 #region HELPER FUNCTIONS

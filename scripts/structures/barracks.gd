@@ -1,22 +1,12 @@
-extends Node2D
+extends Area2D
 
-@onready var sprite = $Sprite2D
-@onready var collision_polygon = $CollisionShape2D
-const structure_type = GameData.StructureType.RESOURCE
+@onready var collision_polygon = $CollisionPolygon2D
+const structure_type = GameData.StructureType.ATTACK
 
 signal structure_selected(structure, structure_type: GameData.StructureType)
 
-func _process(_delta: float) -> void:
-	handle_animation()
-
 func _ready():
 	connect("input_event", Callable(self, "_on_input_event"))
-
-func handle_animation():
-	if GameData.is_game_running:
-		sprite.play()
-	else:
-		sprite.stop()
 
 func get_structure_type():
 	return structure_type
