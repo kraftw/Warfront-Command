@@ -189,8 +189,9 @@ func _on_structure_selected_received(structure: Structure) -> void:
 	selected_structure = structure
 	highlight_structure(selected_structure)
 	build_menu.hide()
-	upgrade_menu.show()
-	upgrade_menu.initialize_buttons(structure)
+	if structure is UpgradeableStructure:
+		upgrade_menu.show()
+		upgrade_menu.initialize_buttons(structure)
 #endregion
 
 #region HELPER FUNCTIONS

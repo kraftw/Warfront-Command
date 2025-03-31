@@ -3,7 +3,7 @@ extends Node
 var is_game_running: bool = true
 var time_elapsed: float = 0.0
 
-enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND, GENERIC }
+enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 
 @export var structures = {
 	StructureType.ATTACK: {
@@ -69,9 +69,6 @@ func get_structure_name(structure_type: StructureType) -> String:
 	if structure_type in structures:
 		if structures[structure_type]["name"]:
 			return structures[structure_type]["name"]
-	if structure_type == StructureType.GENERIC:
-		print("GameData: structure type not set (GENERIC)")
-		return "error"
 	print("GameData: structure name not found")
 	return "error"
 
@@ -79,9 +76,6 @@ func get_structure_cost(structure_type: StructureType) -> int:
 	if structure_type in structures:
 		if structures[structure_type]["cost"]:
 			return structures[structure_type]["cost"]
-	if structure_type == StructureType.GENERIC:
-		print("GameData: structure type not set (GENERIC)")
-		return -1
 	print("GameData: structure cost not found")
 	return -1
 
@@ -89,9 +83,6 @@ func get_upgrade_name(structure_type: StructureType, index: int) -> String:
 	if structure_type in structures:
 		if structures[structure_type]["upgrades"][index]["name"]:
 			return structures[structure_type]["upgrades"][index]["name"]
-	if structure_type == StructureType.GENERIC:
-		print("GameData: structure type not set (GENERIC)")
-		return "error"
 	print("GameData: upgrade name not found")
 	return "error"
 
@@ -99,9 +90,6 @@ func get_upgrade_cost(structure_type: StructureType, index: int) -> int:
 	if structure_type in structures:
 		if structures[structure_type]["upgrades"][index]["cost"]:
 			return structures[structure_type]["upgrades"][index]["cost"]
-	if structure_type == StructureType.GENERIC:
-		print("GameData: structure type not set (GENERIC)")
-		return -1
 	print("GameData: upgrade cost not found")
 	return -1
 
@@ -109,9 +97,6 @@ func get_upgrade_icon(structure_type: StructureType, index: int):
 	if structure_type in structures:
 		if structures[structure_type]["upgrades"][index]["icon"]:
 			return structures[structure_type]["upgrades"][index]["icon"]
-	if structure_type == StructureType.GENERIC:
-		print("GameData: structure type not set (GENERIC)")
-		return null
 	print("GameData: upgrade icon not found")
 	return null
 
@@ -119,9 +104,6 @@ func get_structure_scene(structure_type: StructureType) -> PackedScene:
 	if structure_type in structures:
 		if structures[structure_type]["scene"]:
 			return structures[structure_type]["scene"]
-	if structure_type == StructureType.GENERIC:
-		print("GameData: structure type not set (GENERIC)")
-		return null
 	print("GameData: structure scene not found")
 	return null
 #endregion

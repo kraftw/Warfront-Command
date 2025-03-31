@@ -6,7 +6,7 @@ extends Control
 @onready var sell_button = $MainContainer/MarginContainer/HBoxContainer/VBoxContainer/SellButton
 
 var local_structure_type = null
-var selected_structure: Structure = null
+var selected_structure: UpgradeableStructure = null
 
 signal upgrade_button_pressed(upgrade_index: int)
 signal sell_button_pressed(selected_structure)
@@ -31,7 +31,7 @@ func update_buttons() -> void:
 		else:
 			upgrade_button_2.disabled = false
 
-func initialize_buttons(structure: Structure) -> void:
+func initialize_buttons(structure: UpgradeableStructure) -> void:
 	local_structure_type = structure.get_structure_type()
 	selected_structure = structure
 	initialize_button(local_structure_type, 0)
