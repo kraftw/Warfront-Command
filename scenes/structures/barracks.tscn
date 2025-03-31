@@ -1,11 +1,65 @@
-[gd_scene load_steps=5 format=3 uid="uid://bamhongeqtc2k"]
+[gd_scene load_steps=13 format=3 uid="uid://bamhongeqtc2k"]
 
 [ext_resource type="Texture2D" uid="uid://dej557oe8sexs" path="res://assets/sprites/green/barracks-GRN_720.png" id="1_a5bx4"]
 [ext_resource type="Script" uid="uid://d0lu055047riq" path="res://scripts/structures/barracks.gd" id="1_il0at"]
 [ext_resource type="PackedScene" uid="uid://bjy8q1pfspkxx" path="res://scenes/UI/highlight.tscn" id="3_tdgdq"]
+[ext_resource type="Texture2D" uid="uid://c3oot1mefbn6" path="res://assets/sprites/green/upgrades/barracks_01-GRN_720.png" id="3_vtfgd"]
+[ext_resource type="Texture2D" uid="uid://6jbokbpx28lq" path="res://assets/sprites/green/upgrades/barracks_10-GRN_720.png" id="4_huf8h"]
+[ext_resource type="Texture2D" uid="uid://b4oog161upm3k" path="res://assets/sprites/green/upgrades/barracks_11-GRN_720.png" id="5_kjkmu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5bx4"]
 size = Vector2(96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdgdq"]
+atlas = ExtResource("1_a5bx4")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj5ob"]
+atlas = ExtResource("3_vtfgd")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjkv8"]
+atlas = ExtResource("4_huf8h")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s081r"]
+atlas = ExtResource("5_kjkmu")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mqjjy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdgdq")
+}],
+"loop": true,
+"name": &"00",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj5ob")
+}],
+"loop": true,
+"name": &"01",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjkv8")
+}],
+"loop": true,
+"name": &"10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s081r")
+}],
+"loop": true,
+"name": &"11",
+"speed": 5.0
+}]
 
 [node name="Barracks" type="Area2D"]
 collision_layer = 4
@@ -25,11 +79,12 @@ texture = ExtResource("1_a5bx4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(-1.90735e-06, -1.90735e-06)
+position = Vector2(-1.52588e-05, -1.52588e-05)
 scale = Vector2(0.133333, 0.133333)
-texture = ExtResource("1_a5bx4")
+sprite_frames = SubResource("SpriteFrames_mqjjy")
+animation = &"00"
 
 [node name="Highlight" parent="." instance=ExtResource("3_tdgdq")]
 visible = false

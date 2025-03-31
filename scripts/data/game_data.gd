@@ -13,12 +13,12 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 				0: {
 					"name": "Faster Training",
 					"cost": 350,
-					"icon": null,
+					"icon": preload("res://assets/sprites/green/upgrades/barracks_10-GRN_720.png"),
 				},
 				1: {
 					"name": "Train Colonels",
 					"cost": 600,
-					"icon": null,
+					"icon": preload("res://assets/sprites/green/upgrades/barracks_01-GRN_720.png"),
 				},
 			},
 			"scene": preload("res://scenes/structures/barracks.tscn"),
@@ -29,13 +29,13 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 			"upgrades": {
 				0: {
 					"name": "Bigger Radius",
-					"cost": 100,
-					"icon": null,
+					"cost": 150,
+					"icon": preload("res://assets/sprites/green/upgrades/defense_tower_10-GRN_720.png"),
 				},
 				1: {
-					"name": "Faster Firing",
-					"cost": 250,
-					"icon": null,
+					"name": "Machine Guns",
+					"cost": 450,
+					"icon": preload("res://assets/sprites/green/upgrades/defense_tower_01-GRN_720.png"),
 				},
 			},
 			"scene": preload("res://scenes/structures/defense_tower.tscn"),
@@ -47,12 +47,12 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 				0: {
 					"name": "Faster Production",
 					"cost": 250,
-					"icon": null,
+					"icon": preload("res://assets/sprites/green/upgrades/factory_10_static-GRN_720.png"),
 				},
 				1: {
-					"name": "Double Output",
-					"cost": 400,
-					"icon": null,
+					"name": "Nuclear Power",
+					"cost": 500,
+					"icon": preload("res://assets/sprites/green/upgrades/factory_01_static-GRN_720.png"),
 				},
 			},
 			"scene": preload("res://scenes/structures/factory.tscn"),

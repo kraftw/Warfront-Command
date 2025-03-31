@@ -21,7 +21,7 @@ func initialize_costs():
 func update_ammo_count():
 	$SubContainer/HBoxContainer/AmmoCountLabel.text = str(PlayerData.ammo_count)
 
-# BUTTON FUNCTIONS
+#region BUTTON FUNCTIONS
 func _on_hide_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		self.position.y += main_container.size.y
@@ -38,3 +38,4 @@ func _on_build_defense_button_pressed() -> void:
 
 func _on_build_resource_button_pressed() -> void:
 	emit_signal("build_button_pressed", GameData.StructureType.RESOURCE)
+#endregion

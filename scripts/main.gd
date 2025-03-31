@@ -2,9 +2,11 @@ extends Node2D
 
 #region EXPORT VARIABLES
 @export var tick_interval: float = 0.5
+@export var base_factory_interval: float = 2.5
+@export var base_factory_generation_amount: int = 25
+@export var upgraded_factory_interval: float = 1.5
+@export var upgraded_factory_generation_amount: int = 50
 @export var barracks_interval: float = 3.5
-@export var factory_interval: float = 2.5
-@export var factory_generation_amount: int = 25
 #endregion
 
 #region ONREADY VARIABLES
@@ -31,6 +33,8 @@ func _ready():
 	connect_signal(build_menu, "build_button_pressed")
 	connect_signal(player_side, "mouse_entered_player_side")
 	connect_signal(player_side, "mouse_exited_player_side")
+	connect_signal(upgrade_menu, "upgrade_button_pressed")
+	connect_signal(upgrade_menu, "sell_button_pressed")
 #endregion
 	start_game_tick()
 
@@ -105,12 +109,15 @@ func cancel_placement():
 
 #region STRUCTURE FUNCTIONS
 func gather_resources():
-	if fmod(GameData.time_elapsed, factory_interval) == 0.0:
-		PlayerData.ammo_count += factory_generation_amount * get_tree().get_nodes_in_group("factories").size()
+	if fmod(GameData.time_elapsed, base_factory_interval) == 0.0:
+		PlayerData.ammo_count += base_factory_generation_amount * get_tree().get_nodes_in_group("f_00").size()
+		PlayerData.ammo_count += upgraded_factory_generation_amount * get_tree().get_nodes_in_group("f_01").size()
+	if fmod(GameData.time_elapsed, upgraded_factory_interval) == 0.0:
+		PlayerData.ammo_count += base_factory_generation_amount * get_tree().get_nodes_in_group("f_10").size()
+		PlayerData.ammo_count += upgraded_factory_generation_amount * get_tree().get_nodes_in_group("f_11").size()
 
 func train_troops():
 	if fmod(GameData.time_elapsed, barracks_interval) == 0.0:
-		PlayerData.unit_count += get_tree().get_nodes_in_group("barracks").size()
 		PlayerData.infantry_count += get_tree().get_nodes_in_group("barracks").size()
 
 func highlight_structure(structure):
@@ -135,6 +142,17 @@ func _on_build_button_pressed_received(structure_type: GameData.StructureType):
 		cancel_placement()
 		start_placement(structure_type)
 
+func _on_upgrade_button_pressed_received(upgrade_index: int):
+	if selected_structure:
+		if GameData.get_upgrade_cost(selected_structure.structure_type, upgrade_index) <= PlayerData.ammo_count:
+			PlayerData.ammo_count -= GameData.get_upgrade_cost(selected_structure.structure_type, upgrade_index)
+			selected_structure.set_upgrade(upgrade_index)
+
+func _on_sell_button_pressed_received(structure):
+	PlayerData.ammo_count += structure.get_sell_value()
+	deselect_structure(structure)
+	structure.queue_free()
+
 func _on_mouse_entered_player_side_received():
 	is_placeable = true
 	if is_placing:
@@ -155,7 +173,7 @@ func _process_game_tick():
 	game_timer.wait_time
 	game_timer.start()
 
-func _on_structure_selected_received(structure, structure_type):
+func _on_structure_selected_received(structure):
 	if selected_structure:
 		deselect_structure(selected_structure)
 	
@@ -163,7 +181,7 @@ func _on_structure_selected_received(structure, structure_type):
 	highlight_structure(selected_structure)
 	build_menu.hide()
 	upgrade_menu.show()
-	upgrade_menu.update_buttons(structure_type)
+	upgrade_menu.initialize_buttons(structure)
 #endregion
 
 #region HELPER FUNCTIONS

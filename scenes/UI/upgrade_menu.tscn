@@ -105,3 +105,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 18
 text = "Sell Value: Error"
+
+[connection signal="pressed" from="MainContainer/MarginContainer/HBoxContainer/UpgradeButton1" to="." method="_on_upgrade_button_1_pressed"]
+[connection signal="pressed" from="MainContainer/MarginContainer/HBoxContainer/UpgradeButton2" to="." method="_on_upgrade_button_2_pressed"]
+[connection signal="pressed" from="MainContainer/MarginContainer/HBoxContainer/VBoxContainer/SellButton" to="." method="_on_sell_button_pressed"]
