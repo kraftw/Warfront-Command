@@ -6,7 +6,7 @@ extends Control
 @onready var sell_button = $MainContainer/MarginContainer/HBoxContainer/VBoxContainer/SellButton
 
 var local_structure_type = null
-var selected_structure = null
+var selected_structure: Structure = null
 
 signal upgrade_button_pressed(upgrade_index: int)
 signal sell_button_pressed(selected_structure)
@@ -15,10 +15,10 @@ func _process(_delta: float) -> void:
 	update_ammo_count()
 	update_buttons()
 
-func update_ammo_count():
+func update_ammo_count() -> void:
 	$SubContainer/HBoxContainer/AmmoCountLabel.text = str(PlayerData.ammo_count)
 
-func update_buttons():
+func update_buttons() -> void:
 	if selected_structure:
 		find_child("SellButton").text = "Sell Value: " + str(selected_structure.get_sell_value())
 		find_child("RepairButton").text = "Repair Cost: " + str(selected_structure.get_repair_cost()) # replace 0 with building health eventually
@@ -31,13 +31,13 @@ func update_buttons():
 		else:
 			upgrade_button_2.disabled = false
 
-func initialize_buttons(structure):
+func initialize_buttons(structure: Structure) -> void:
 	local_structure_type = structure.get_structure_type()
 	selected_structure = structure
 	initialize_button(local_structure_type, 0)
 	initialize_button(local_structure_type, 1)
 
-func initialize_button(structure_type: GameData.StructureType, index: int):
+func initialize_button(structure_type: GameData.StructureType, index: int) -> void:
 	match index:
 		0:
 			upgrade_button_1.find_child("UpgradeIcon").texture = GameData.get_upgrade_icon(structure_type, index)
