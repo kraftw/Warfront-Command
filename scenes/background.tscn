@@ -1,12 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://mjwo0i6g12dy"]
+[gd_scene load_steps=2 format=3 uid="uid://mjwo0i6g12dy"]
 
 [ext_resource type="Texture2D" uid="uid://c6ryeeqq0hw6q" path="res://assets/sprites/neutral/background-1280x720.png" id="1_bkp1e"]
-[ext_resource type="Script" uid="uid://bmwq3whgq4hs2" path="res://scripts/background.gd" id="2_y0upk"]
 
 [node name="Background" type="Area2D"]
 collision_layer = 16
 collision_mask = 32
-script = ExtResource("2_y0upk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bkp1e")

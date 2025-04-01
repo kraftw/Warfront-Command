@@ -1,20 +1,5 @@
-extends Node2D
+extends Node
 
-#region EXPORT VARIABLES
-@export var tick_interval: float = 0.5
-#region FACTORY VARIABLES
-@export var base_factory_interval: float = 2.5
-@export var base_factory_generation_amount: int = 25
-@export var upgraded_factory_interval: float = 1.5
-@export var upgraded_factory_generation_amount: int = 50
-#endregion
-#region BARRACKS VARIABLES
-@export var base_barracks_interval: float = 3.5
-@export var upgraded_barracks_interval: float = 2
-#endregion
-#endregion
-
-#region ONREADY VARIABLES
 @onready var build_menu = $HUD/BuildMenu
 @onready var upgrade_menu = $HUD/UpgradeMenu
 @onready var command_menu = $HUD/CommandMenu
@@ -156,30 +141,30 @@ func handle_deselect() -> void:
 #endregion
 
 #region SIGNAL FUNCTIONS
-func _on_build_button_pressed_received(structure_type: GameData.StructureType) -> void:
+func _on_build_button_pressed(structure_type: GameData.StructureType) -> void:
 	if not structure_instance:
 		start_placement(structure_type)
 	else:
 		cancel_placement()
 		start_placement(structure_type)
 
-func _on_upgrade_button_pressed_received(upgrade_index: int) -> void:
+func _on_upgrade_button_pressed(upgrade_index: int) -> void:
 	if selected_structure:
 		if GameData.get_upgrade_cost(selected_structure.structure_type, upgrade_index) <= PlayerData.ammo_count:
 			PlayerData.ammo_count -= GameData.get_upgrade_cost(selected_structure.structure_type, upgrade_index)
 			selected_structure.set_upgrade(upgrade_index)
 
-func _on_sell_button_pressed_received(structure: Structure) -> void:
+func _on_sell_button_pressed(structure: Structure) -> void:
 	PlayerData.ammo_count += structure.get_sell_value()
 	deselect_structure(structure)
 	structure.queue_free()
 
-func _on_mouse_entered_player_side_received() -> void:
+func _on_mouse_entered_player_side() -> void:
 	is_placeable = true
 	if is_placing:
 		opponent_side.hide()
 
-func _on_mouse_exited_player_side_received() -> void:
+func _on_mouse_exited_player_side() -> void:
 	is_placeable = false
 	if is_placing:
 		opponent_side.show()
@@ -194,7 +179,7 @@ func _process_game_tick() -> void:
 	game_timer.wait_time
 	game_timer.start()
 
-func _on_structure_selected_received(structure: Structure) -> void:
+func _on_structure_selected(structure: Structure) -> void:
 	if selected_structure:
 		deselect_structure(selected_structure)
 	
@@ -211,7 +196,7 @@ func _on_structure_selected_received(structure: Structure) -> void:
 #region HELPER FUNCTIONS
 func connect_signal(sender: Node, signal_name: String) -> void:
 	if sender:
-		sender.connect(signal_name, Callable(self, "_on_" + signal_name + "_received"))
+		sender.connect(signal_name, Callable(self, "_on_" + signal_name))
 	else:
 		print("Main.connect_signal: sender is false")
 #endregion

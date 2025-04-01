@@ -1,45 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://y8yi2do7rvtc"]
+[gd_scene load_steps=9 format=3 uid="uid://y8yi2do7rvtc"]
 
-[ext_resource type="Script" uid="uid://dpaxe55cna383" path="res://scripts/main.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://dpaxe55cna383" path="res://scripts/handlers/GameHandler.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://mjwo0i6g12dy" path="res://scenes/background.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://c658xujbomggh" path="res://scenes/UI/buttons/exit_button.tscn" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://dts310ofgmb35" path="res://scenes/UI/buttons/pause_button.tscn" id="5_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://sirb86oah0ww" path="res://scenes/UI/build_menu.tscn" id="6_tefeu"]
-[ext_resource type="PackedScene" uid="uid://bgnap1hl1500g" path="res://scenes/UI/upgrade_menu.tscn" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://0swp50cdjwry" path="res://scenes/UI/command_menu.tscn" id="7_tipki"]
+[ext_resource type="Script" uid="uid://ghqtcl3k6vq" path="res://scripts/handlers/BuildHandler.gd" id="2_tefeu"]
+[ext_resource type="Script" uid="uid://diu3ft84xuamx" path="res://scripts/handlers/StructureHandler.gd" id="3_tipki"]
+[ext_resource type="Script" uid="uid://mg4ivrrmpdme" path="res://scripts/handlers/UIHandler.gd" id="4_85g3d"]
+[ext_resource type="PackedScene" uid="uid://sirb86oah0ww" path="res://scenes/UI/menus/build_menu.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bgnap1hl1500g" path="res://scenes/UI/menus/upgrade_menu.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://0swp50cdjwry" path="res://scenes/UI/menus/command_menu.tscn" id="7_tipki"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0wfyh")
+tick_interval = null
+base_factory_interval = null
+base_factory_generation_amount = null
+upgraded_factory_interval = null
+upgraded_factory_generation_amount = null
+base_barracks_interval = null
+upgraded_barracks_interval = null
 
-[node name="Background" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(640, 360)
+[node name="BuildHandler" type="Node" parent="."]
+script = ExtResource("2_tefeu")
+
+[node name="Structures" type="Node" parent="."]
+script = ExtResource("3_tipki")
+
+[node name="Units" type="Node" parent="."]
 
 [node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("4_85g3d")
 
-[node name="ExitButton" parent="HUD" instance=ExtResource("4_jyhfs")]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -112.0
-offset_top = -112.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="ExitButton" type="Button" parent="HUD"]
+offset_right = 8.0
+offset_bottom = 8.0
 
-[node name="PauseButton" parent="HUD" instance=ExtResource("5_tbgi4")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -112.0
-offset_right = 112.0
-offset_bottom = -16.0
-grow_vertical = 0
+[node name="PauseButton" type="Button" parent="HUD"]
+offset_right = 8.0
+offset_bottom = 8.0
 
 [node name="BuildMenu" parent="HUD" instance=ExtResource("6_tefeu")]
 anchors_preset = 7
@@ -68,8 +65,7 @@ offset_top = 560.0
 offset_right = 256.0
 offset_bottom = 560.0
 
+[node name="Background" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(640, 360)
+
 [node name="GameTimer" type="Timer" parent="."]
-
-[node name="Structures" type="Node" parent="."]
-
-[node name="Units" type="Node" parent="."]
