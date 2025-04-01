@@ -1,0 +1,146 @@
+[gd_scene load_steps=13 format=3 uid="uid://0swp50cdjwry"]
+
+[ext_resource type="StyleBox" uid="uid://di1nluccllk3m" path="res://assets/themes/button/button_hover.tres" id="1_odu28"]
+[ext_resource type="Script" uid="uid://ckox2qy32lpjj" path="res://scripts/UI/command_menu.gd" id="1_w578a"]
+[ext_resource type="StyleBox" uid="uid://binvhm1oyyakd" path="res://assets/themes/button/button_normal.tres" id="2_pmda6"]
+[ext_resource type="StyleBox" uid="uid://l6mmwe2n55q8" path="res://assets/themes/button/button_pressed.tres" id="3_et4xu"]
+[ext_resource type="StyleBox" uid="uid://bfnd8gkws0sb7" path="res://assets/themes/menu/menu_stylebox.tres" id="4_1x4v2"]
+[ext_resource type="Texture2D" uid="uid://cfflgkj4pjfny" path="res://assets/sprites/green/infantry-GRN_480.png" id="5_w578a"]
+[ext_resource type="Texture2D" uid="uid://b3vkbobmyw0f6" path="res://assets/sprites/green/colonel-GRN_480.png" id="6_j22ih"]
+[ext_resource type="Texture2D" uid="uid://bj27roqmyfcof" path="res://assets/icons/icons8-battle-100.png" id="6_pmda6"]
+[ext_resource type="Texture2D" uid="uid://b7m1578vo58gp" path="res://assets/icons/icons8-shield-100.png" id="7_1x4v2"]
+[ext_resource type="Texture2D" uid="uid://bpt26m7rery5q" path="res://assets/icons/icons8-military-base-100.png" id="7_et4xu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtvuh"]
+
+[sub_resource type="Theme" id="Theme_w578a"]
+default_font_size = 28
+Button/styles/focus = SubResource("StyleBoxEmpty_gtvuh")
+Button/styles/hover = ExtResource("1_odu28")
+Button/styles/normal = ExtResource("2_pmda6")
+Button/styles/pressed = ExtResource("3_et4xu")
+PanelContainer/styles/panel = ExtResource("4_1x4v2")
+
+[node name="CommandMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w578a")
+
+[node name="SubContainer" type="PanelContainer" parent="."]
+offset_left = 256.0
+offset_right = 512.0
+offset_bottom = 56.0
+theme = SubResource("Theme_w578a")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Infantry" type="HBoxContainer" parent="SubContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="SubContainer/HBoxContainer/Infantry"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="InfantryIcon" type="TextureRect" parent="SubContainer/HBoxContainer/Infantry/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_w578a")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="SemicolonLabel" type="Label" parent="SubContainer/HBoxContainer/Infantry"]
+layout_mode = 2
+text = ":"
+horizontal_alignment = 1
+
+[node name="InfantryCountLabel" type="Label" parent="SubContainer/HBoxContainer/Infantry"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Colonel" type="HBoxContainer" parent="SubContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="SubContainer/HBoxContainer/Colonel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ColonelIcon" type="TextureRect" parent="SubContainer/HBoxContainer/Colonel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_j22ih")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="SemicolonLabel" type="Label" parent="SubContainer/HBoxContainer/Colonel"]
+layout_mode = 2
+text = ":"
+horizontal_alignment = 1
+
+[node name="ColonelCountLabel" type="Label" parent="SubContainer/HBoxContainer/Colonel"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainContainer" type="PanelContainer" parent="."]
+offset_top = 48.0
+offset_right = 768.0
+offset_bottom = 160.0
+theme = SubResource("Theme_w578a")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="MainContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0.345098, 0.345098, 0.345098, 1)
+theme_override_constants/outline_size = 16
+text = "ATTACK"
+icon = ExtResource("6_pmda6")
+icon_alignment = 1
+expand_icon = true
+
+[node name="DefendButton" type="Button" parent="MainContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0.345098, 0.345098, 0.345098, 1)
+theme_override_constants/outline_size = 16
+text = "DEFEND"
+icon = ExtResource("7_1x4v2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RetreatButton" type="Button" parent="MainContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0.345098, 0.345098, 0.345098, 1)
+theme_override_constants/outline_size = 16
+text = "RETREAT"
+icon = ExtResource("7_et4xu")
+icon_alignment = 1
+expand_icon = true

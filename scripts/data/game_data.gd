@@ -59,8 +59,7 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 	},
 	StructureType.COMMAND: {
 			"name": "Command Center",
-			"cost": null,
-			"scene": null,
+			"scene": preload("res://scenes/structures/command_center.tscn"),
 	},
 }
 

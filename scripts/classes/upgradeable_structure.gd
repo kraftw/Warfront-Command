@@ -8,14 +8,19 @@ var type_abbreviation: String = ""
 
 var has_upgrade_1: bool = false
 var has_upgrade_2: bool = false
+var sell_value: int = 0
+var repair_cost: int = 0
 
 func _ready() -> void:
 	super._ready()
 	sprite.play("00")
-	add_to_group(type_abbreviation + "_00")
+	sell_value = GameData.get_structure_cost(structure_type)
 
 func _process(_delta: float) -> void:
 	handle_animation()
+
+func place():
+	add_to_group(type_abbreviation + "_00")
 
 func handle_animation() -> void:
 	if has_upgrade_1 and has_upgrade_2:
@@ -25,6 +30,15 @@ func handle_animation() -> void:
 	elif has_upgrade_2:
 		sprite.play("01")
 
+#region GETTER FUNCTIONS
+func get_sell_value() -> int:
+	return sell_value
+
+func get_repair_cost() -> int:
+	return repair_cost
+#endregion
+
+#region UPGRADE FUNCTIONS
 func set_upgrade(upgrade_index) -> void:
 	match upgrade_index:
 		0:
@@ -50,3 +64,4 @@ func update_groups() -> void:
 		add_to_group(type_abbreviation + "_01")
 	else:
 		add_to_group(type_abbreviation + "_00")
+#endregion

@@ -17,19 +17,24 @@ extends Node2D
 #region ONREADY VARIABLES
 @onready var build_menu = $HUD/BuildMenu
 @onready var upgrade_menu = $HUD/UpgradeMenu
-@onready var player_side = $Background/PlayerSide
+@onready var command_menu = $HUD/CommandMenu
+@onready var player_side = $Background
 @onready var opponent_side = $Background/OpponentSide
 @onready var game_timer = $GameTimer
 #endregion
 
+#region CONSTANT VARIABLES
+const PLAYER_COMMAND_CENTER_POSITION: Vector2 = Vector2(224, 544)
+#endregion
+
 #region REGULAR VARIABLES
-var structure_instance = null
+var structure_instance: UpgradeableStructure = null
 var local_structure_type = null
 var placement_position = null
 var is_placing: bool = false
 var is_placeable: bool = false
 # var is_overlapping: bool = false # TODO
-var selected_structure = null
+var selected_structure: Structure = null
 #endregion
 
 #region GAME FUNCTIONS
@@ -42,6 +47,7 @@ func _ready() -> void:
 	connect_signal(upgrade_menu, "sell_button_pressed")
 #endregion
 	start_game_tick()
+	generate_command_center()
 
 func _process(_delta) -> void:
 	handle_placement(get_global_mouse_position())
@@ -83,12 +89,8 @@ func confirm_placement() -> void:
 		structure_instance.position = placement_position
 		structure_instance.find_child("Preview").queue_free()
 		structure_instance.find_child("Sprite2D").show()
+		structure_instance.place()
 		
-		match local_structure_type:
-			GameData.StructureType.ATTACK:
-				structure_instance.add_to_group("barracks")
-			GameData.StructureType.RESOURCE:
-				structure_instance.add_to_group("factories")
 		connect_signal(structure_instance, "structure_selected")
 		
 		PlayerData.ammo_count -= GameData.get_structure_cost(local_structure_type)
@@ -113,6 +115,13 @@ func cancel_placement() -> void:
 #endregion
 
 #region STRUCTURE FUNCTIONS
+func generate_command_center():
+	var local_command_center_instance = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
+	local_command_center_instance.position = PLAYER_COMMAND_CENTER_POSITION
+	$Structures.add_child(local_command_center_instance)
+	
+	connect_signal(local_command_center_instance, "structure_selected")
+
 func gather_resources() -> void:
 	if fmod(GameData.time_elapsed, base_factory_interval) == 0.0:
 		PlayerData.ammo_count += base_factory_generation_amount * get_tree().get_nodes_in_group("f_00").size()
@@ -134,7 +143,10 @@ func highlight_structure(structure: Structure) -> void:
 
 func deselect_structure(structure: Structure) -> void:
 	structure.find_child("Highlight").hide()
-	upgrade_menu.hide()
+	if structure is UpgradeableStructure:
+		upgrade_menu.hide()
+	if structure.get_structure_type() == GameData.StructureType.COMMAND:
+		command_menu.hide()
 	build_menu.show()
 
 func handle_deselect() -> void:
@@ -192,6 +204,8 @@ func _on_structure_selected_received(structure: Structure) -> void:
 	if structure is UpgradeableStructure:
 		upgrade_menu.show()
 		upgrade_menu.initialize_buttons(structure)
+	if structure.get_structure_type() == GameData.StructureType.COMMAND:
+		command_menu.show()
 #endregion
 
 #region HELPER FUNCTIONS

@@ -65,7 +65,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"01",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -76,7 +76,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"10",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -87,7 +87,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"11",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [node name="Factory" type="Area2D"]
@@ -113,7 +113,7 @@ visible = false
 position = Vector2(4.06901e-06, -5.72205e-06)
 scale = Vector2(0.133333, 0.133333)
 sprite_frames = SubResource("SpriteFrames_aiq47")
-animation = &"00"
+animation = &"11"
 
 [node name="Highlight" parent="." instance=ExtResource("3_aiq47")]
 visible = false

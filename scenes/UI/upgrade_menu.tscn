@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://b6sn1rvxar2b" path="res://scenes/UI/buttons/upgrade/upgrade_button_1.tscn" id="6_2jg1k"]
 [ext_resource type="PackedScene" uid="uid://vtgprk553hu6" path="res://scenes/UI/buttons/upgrade/upgrade_button_2.tscn" id="7_hvk4m"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtvuh"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvk4m"]
 
 [sub_resource type="Theme" id="Theme_m88e3"]
 default_font_size = 28
-Button/styles/focus = SubResource("StyleBoxEmpty_gtvuh")
+Button/styles/focus = SubResource("StyleBoxEmpty_hvk4m")
 Button/styles/hover = ExtResource("1_hvk4m")
 Button/styles/normal = ExtResource("2_s1ibb")
 Button/styles/pressed = ExtResource("3_d6n1g")

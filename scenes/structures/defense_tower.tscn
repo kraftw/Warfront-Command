@@ -42,7 +42,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"01",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -50,7 +50,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"10",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -58,7 +58,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"11",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2rhrg"]
@@ -87,7 +87,7 @@ visible = false
 position = Vector2(3.8147e-06, 0)
 scale = Vector2(0.133333, 0.133333)
 sprite_frames = SubResource("SpriteFrames_io4u0")
-animation = &"00"
+animation = &"11"
 
 [node name="Highlight" parent="." instance=ExtResource("3_2mnvv")]
 visible = false

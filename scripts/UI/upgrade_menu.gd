@@ -20,8 +20,8 @@ func update_ammo_count() -> void:
 
 func update_buttons() -> void:
 	if selected_structure:
-		find_child("SellButton").text = "Sell Value: " + str(selected_structure.get_sell_value())
-		find_child("RepairButton").text = "Repair Cost: " + str(selected_structure.get_repair_cost()) # replace 0 with building health eventually
+		sell_button.text = "Sell Value: " + str(selected_structure.get_sell_value())
+		repair_button.text = "Repair Cost: " + str(selected_structure.get_repair_cost()) # replace 0 with building health eventually
 		if selected_structure.has_upgrade_1:
 			upgrade_button_1.disabled = true
 		else:

@@ -42,7 +42,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"01",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -50,7 +50,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"10",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -58,7 +58,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"11",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [node name="Barracks" type="Area2D"]
@@ -84,7 +84,7 @@ visible = false
 position = Vector2(-1.52588e-05, -1.52588e-05)
 scale = Vector2(0.133333, 0.133333)
 sprite_frames = SubResource("SpriteFrames_mqjjy")
-animation = &"00"
+animation = &"11"
 
 [node name="Highlight" parent="." instance=ExtResource("3_tdgdq")]
 visible = false
