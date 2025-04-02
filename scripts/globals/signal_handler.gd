@@ -4,7 +4,6 @@ func connect_signal(sender: Node, receiver: Node, signal_name: String) -> bool:
 	if sender and receiver:
 		var method_name = "_on_" + signal_name
 		if receiver.has_method(method_name):
-			sender.disconnect(signal_name, Callable(receiver, method_name))
 			sender.connect(signal_name, Callable(receiver, method_name))
 			return true
 		else:

@@ -1,9 +1,8 @@
 extends Node
 
-#region VARIABLES
+
 @onready var hud = $"../HUD"
 @onready var build_menu = $"../HUD/BuildMenu"
-@onready var background = $"../Background"
 @onready var opponent_side = $"../Background/OpponentSide"
 
 var structure_instance: UpgradeableStructure = null
@@ -11,16 +10,12 @@ var local_structure_type = null
 var placement_position = null
 var is_placing: bool = false
 var is_placeable: bool = false
-#endregion
 
-func _ready() -> void:
-	SignalHandler.connect_signal(background, self, "mouse_entered_player_side")
-	SignalHandler.connect_signal(background, self, "mouse_exited_player_side")
 
 func start_placement(structure_type: GameData.StructureType) -> void:
 	if GameData.get_structure_scene(structure_type):
 		structure_instance = GameData.get_structure_scene(structure_type).instantiate()
-		$Structures.add_child(structure_instance)
+		$"../Structures".add_child(structure_instance)
 		local_structure_type = structure_type
 		is_placing = true
 		build_menu._on_hide_button_toggled(true)

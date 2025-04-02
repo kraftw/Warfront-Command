@@ -1,25 +1,23 @@
 extends Node
 
-#region FACTORY VARIABLES
-@export var base_factory_interval: float = 2.5
-@export var base_factory_generation_amount: int = 25
 
+@export var base_factory_interval: float = 2.5
 @export var upgraded_factory_interval: float = 1.5
+@export var base_factory_generation_amount: int = 25
 @export var upgraded_factory_generation_amount: int = 50
-#endregion
-#region BARRACKS VARIABLES
+
 @export var base_barracks_interval: float = 3.5
 @export var upgraded_barracks_interval: float = 2
-#endregion
 
 @onready var hud = $"../HUD"
+
 
 const PLAYER_COMMAND_CENTER_POSITION: Vector2 = Vector2(224, 544)
 
 func generate_command_center():
 	var local_command_center_instance = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
 	local_command_center_instance.position = PLAYER_COMMAND_CENTER_POSITION
-	$Structures.add_child(local_command_center_instance)
+	add_child(local_command_center_instance)
 	
 	SignalHandler.connect_signal(local_command_center_instance, hud, "structure_selected")
 
