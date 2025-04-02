@@ -12,11 +12,9 @@ extends Node
 @onready var hud = $"../HUD"
 
 
-const PLAYER_COMMAND_CENTER_POSITION: Vector2 = Vector2(224, 544)
-
 func generate_command_center():
 	var local_command_center_instance = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
-	local_command_center_instance.position = PLAYER_COMMAND_CENTER_POSITION
+	local_command_center_instance.position = GameData.PLAYER_COMMAND_CENTER_POSITION
 	add_child(local_command_center_instance)
 	
 	SignalHandler.connect_signal(local_command_center_instance, hud, "structure_selected")

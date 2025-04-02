@@ -7,7 +7,9 @@ extends Node
 @onready var BuildHandler = $"../BuildHandler"
 
 var selected_structure: Structure = null
+var active_units: int = 0
 
+signal command_received(command: String)
 signal pause_button_pressed()
 
 
@@ -15,6 +17,7 @@ func _ready() -> void:
 	SignalHandler.connect_signal(build_menu, self, "build_button_pressed")
 	SignalHandler.connect_signal(upgrade_menu, self, "upgrade_button_pressed")
 	SignalHandler.connect_signal(upgrade_menu, self, "sell_button_pressed")
+	SignalHandler.connect_signal(command_menu, self, "command_button_pressed")
 
 func _process(_delta) -> void:
 	handle_deselect()
@@ -68,6 +71,17 @@ func _on_sell_button_pressed(structure: Structure) -> void:
 	PlayerData.ammo_count += structure.get_sell_value()
 	deselect_structure(structure)
 	structure.queue_free()
+
+func _on_command_button_pressed(command: String) -> void:
+	match command:
+		"ATTACK":
+			emit_signal("command_received", command)
+		"DEFEND":
+			emit_signal("command_received", command)
+		"RETREAT":
+			emit_signal("command_received", command)
+		_:
+			print("UIHandler: invalid command: " + command)
 
 func _on_pause_button_pressed() -> void:
 	emit_signal("pause_button_pressed")

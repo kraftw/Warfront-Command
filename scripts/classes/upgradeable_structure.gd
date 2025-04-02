@@ -1,11 +1,12 @@
 extends Structure
 class_name UpgradeableStructure
 
-@onready var sprite = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 
 # OVERIDDEN IN CHILDREN
 var type_abbreviation: String = ""
 
+var is_green: bool = false
 var has_upgrade_1: bool = false
 var has_upgrade_2: bool = false
 var sell_value: int = 0
@@ -21,6 +22,8 @@ func _process(_delta: float) -> void:
 
 func place():
 	add_to_group(type_abbreviation + "_00")
+	if type_abbreviation == "dt":
+		find_child("DetectionArea").set_detection_radius()
 
 func handle_animation() -> void:
 	if has_upgrade_1 and has_upgrade_2:

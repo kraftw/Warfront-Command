@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhf4svtri3nd0"]
+
+[ext_resource type="Script" uid="uid://bq0xxorhs6qbf" path="res://scripts/classes/unit.gd" id="1_6e3tn"]
+[ext_resource type="PackedScene" uid="uid://dj16t4l5313f7" path="res://scenes/detection_area.tscn" id="2_cx6aj"]
+[ext_resource type="Texture2D" uid="uid://b3vkbobmyw0f6" path="res://assets/sprites/green/colonel-GRN_480.png" id="2_rk2mp"]
+[ext_resource type="Texture2D" uid="uid://cfflgkj4pjfny" path="res://assets/sprites/green/infantry-GRN_480.png" id="3_44d7s"]
+[ext_resource type="Texture2D" uid="uid://b577noxe4vtue" path="res://assets/sprites/red/colonel-RED_480.png" id="4_fe0lq"]
+[ext_resource type="Texture2D" uid="uid://b3uhe8li4gpnw" path="res://assets/sprites/red/infantry-RED_480.png" id="5_vewqn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amp7q"]
+atlas = ExtResource("2_rk2mp")
+region = Rect2(0, 0, 480, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvvv6"]
+atlas = ExtResource("3_44d7s")
+region = Rect2(0, 0, 480, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npoq2"]
+atlas = ExtResource("4_fe0lq")
+region = Rect2(0, 0, 480, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7yoe"]
+atlas = ExtResource("5_vewqn")
+region = Rect2(0, 0, 480, 480)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wy2ti"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amp7q")
+}],
+"loop": true,
+"name": &"green_colonel",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvvv6")
+}],
+"loop": true,
+"name": &"green_infantry",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npoq2")
+}],
+"loop": true,
+"name": &"red_colonel",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7yoe")
+}],
+"loop": true,
+"name": &"red_infantry",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6k8ya"]
+radius = 24.0
+
+[node name="Unit" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_6e3tn")
+metadata/_custom_type_script = "uid://bq0xxorhs6qbf"
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9.53674e-07, 4.76837e-07)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_wy2ti")
+animation = &"green_infantry"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6k8ya")
+
+[node name="DetectionArea" parent="." instance=ExtResource("2_cx6aj")]

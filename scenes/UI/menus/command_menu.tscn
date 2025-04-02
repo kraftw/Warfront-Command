@@ -31,6 +31,7 @@ grow_vertical = 2
 script = ExtResource("1_w578a")
 
 [node name="SubContainer" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 56.0
@@ -99,6 +100,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MainContainer" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_top = 48.0
 offset_right = 768.0
 offset_bottom = 160.0
@@ -144,3 +146,7 @@ text = "RETREAT"
 icon = ExtResource("7_et4xu")
 icon_alignment = 1
 expand_icon = true
+
+[connection signal="pressed" from="MainContainer/MarginContainer/HBoxContainer/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="MainContainer/MarginContainer/HBoxContainer/DefendButton" to="." method="_on_defend_button_pressed"]
+[connection signal="pressed" from="MainContainer/MarginContainer/HBoxContainer/RetreatButton" to="." method="_on_retreat_button_pressed"]

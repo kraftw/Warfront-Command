@@ -61,7 +61,7 @@ func cancel_placement() -> void:
 	local_structure_type = null
 	placement_position = null
 	
-	$Structures.get_child(-1).queue_free()
+	$"../Structures".get_child(-1).queue_free()
 	build_menu._on_hide_button_toggled(false)
 	opponent_side.hide()
 

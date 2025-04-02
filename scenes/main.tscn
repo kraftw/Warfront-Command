@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://y8yi2do7rvtc"]
+[gd_scene load_steps=13 format=3 uid="uid://y8yi2do7rvtc"]
 
 [ext_resource type="Script" uid="uid://dpaxe55cna383" path="res://scripts/handlers/GameHandler.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://mjwo0i6g12dy" path="res://scenes/background.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://ghqtcl3k6vq" path="res://scripts/handlers/BuildHandler.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://diu3ft84xuamx" path="res://scripts/handlers/StructureHandler.gd" id="3_tipki"]
 [ext_resource type="Script" uid="uid://mg4ivrrmpdme" path="res://scripts/handlers/UIHandler.gd" id="4_85g3d"]
+[ext_resource type="Script" uid="uid://cd0q8a2ehjw4y" path="res://scripts/handlers/UnitHandler.gd" id="4_eb6dy"]
 [ext_resource type="Theme" uid="uid://b5jd8uca7qw0h" path="res://assets/themes/button/button.tres" id="5_choun"]
 [ext_resource type="PackedScene" uid="uid://sirb86oah0ww" path="res://scenes/UI/menus/build_menu.tscn" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://sbkfi3uvidk5" path="res://assets/icons/icons8-pause-100.png" id="6_ya4ey"]
@@ -22,6 +23,7 @@ script = ExtResource("2_tefeu")
 script = ExtResource("3_tipki")
 
 [node name="Units" type="Node" parent="."]
+script = ExtResource("4_eb6dy")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("4_85g3d")

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dk8f3w5ol6lf5" path="res://assets/sprites/green/upgrades/defense_tower_01-GRN_720.png" id="3_6glv5"]
 [ext_resource type="Texture2D" uid="uid://dndiqwf0mnmgf" path="res://assets/sprites/green/upgrades/defense_tower_10-GRN_720.png" id="4_qjf47"]
 [ext_resource type="Texture2D" uid="uid://dn72k2552a0wy" path="res://assets/sprites/green/upgrades/defense_tower_11-GRN_720.png" id="5_k542c"]
+[ext_resource type="PackedScene" uid="uid://dj16t4l5313f7" path="res://scenes/detection_area.tscn" id="7_qjf47"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rhrg"]
 size = Vector2(64, 96)
@@ -61,9 +62,6 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2rhrg"]
-radius = 96.0
-
 [node name="DefenseTower" type="Area2D"]
 collision_layer = 4
 collision_mask = 8
@@ -71,6 +69,8 @@ script = ExtResource("1_3aal5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2rhrg")
+
+[node name="DetectionArea" parent="." instance=ExtResource("7_qjf47")]
 
 [node name="Preview" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.490196)
@@ -93,9 +93,3 @@ animation = &"11"
 visible = false
 offset_left = -32.0
 offset_right = 32.0
-
-[node name="AttackRadius" type="Area2D" parent="."]
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
-shape = SubResource("CircleShape2D_2rhrg")
