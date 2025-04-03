@@ -37,6 +37,7 @@ const COLLISION_MASKS = {
 }
 
 const PLAYER_COMMAND_CENTER_POSITION: Vector2 = Vector2(224, 544)
+const ENEMY_COMMAND_CENTER_POSITION: Vector2 = Vector2(1056, 176)
 
 enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 
@@ -69,7 +70,7 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 			},
 			1: {
 				"name": "Machine Guns",
-				"cost": 450,
+				"cost": 325,
 				"icon": preload("res://assets/sprites/green/upgrades/defense_tower_01-GRN_720.png"),
 			},
 		},
@@ -77,16 +78,16 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 	},
 	StructureType.RESOURCE: {
 		"name": "Factory",
-		"cost": 300,
+		"cost": 500,
 		"upgrades": {
 			0: {
 				"name": "Faster Production",
-				"cost": 250,
+				"cost": 350,
 				"icon": preload("res://assets/sprites/green/upgrades/factory_10_static-GRN_720.png"),
 			},
 			1: {
 				"name": "Nuclear Power",
-				"cost": 500,
+				"cost": 725,
 				"icon": preload("res://assets/sprites/green/upgrades/factory_01_static-GRN_720.png"),
 			},
 		},

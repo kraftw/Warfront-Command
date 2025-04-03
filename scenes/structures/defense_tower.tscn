@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy7ktoqnsuwbl"]
+[gd_scene load_steps=22 format=3 uid="uid://dy7ktoqnsuwbl"]
 
 [ext_resource type="Texture2D" uid="uid://5kk6qxg1ei4s" path="res://assets/sprites/green/defense_tower-GRN_720.png" id="1_2rhrg"]
 [ext_resource type="Script" uid="uid://bffclkau86t8i" path="res://scripts/structures/defense_tower.gd" id="1_3aal5"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dndiqwf0mnmgf" path="res://assets/sprites/green/upgrades/defense_tower_10-GRN_720.png" id="4_qjf47"]
 [ext_resource type="Texture2D" uid="uid://dn72k2552a0wy" path="res://assets/sprites/green/upgrades/defense_tower_11-GRN_720.png" id="5_k542c"]
 [ext_resource type="PackedScene" uid="uid://dj16t4l5313f7" path="res://scenes/detection_area.tscn" id="7_qjf47"]
+[ext_resource type="Texture2D" uid="uid://dvp35ke5t5ae4" path="res://assets/sprites/red/defense_tower-RED_720.png" id="7_re7ms"]
+[ext_resource type="Texture2D" uid="uid://crapenxpnejvi" path="res://assets/sprites/red/upgrades/defense_tower_01-RED_720.png" id="8_le5mo"]
+[ext_resource type="Texture2D" uid="uid://g4myu2melqgd" path="res://assets/sprites/red/upgrades/defense_tower_10-RED_720.png" id="9_s0hbi"]
+[ext_resource type="Texture2D" uid="uid://bx74e0uvuwx2l" path="res://assets/sprites/red/upgrades/defense_tower_11-RED_720.png" id="10_113yh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rhrg"]
 size = Vector2(64, 96)
@@ -27,6 +31,22 @@ region = Rect2(0, 0, 720, 720)
 atlas = ExtResource("5_k542c")
 region = Rect2(0, 0, 720, 720)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uas1b"]
+atlas = ExtResource("7_re7ms")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gp3t"]
+atlas = ExtResource("8_le5mo")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrdgy"]
+atlas = ExtResource("9_s0hbi")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2wps"]
+atlas = ExtResource("10_113yh")
+region = Rect2(0, 0, 720, 720)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_io4u0"]
 animations = [{
 "frames": [{
@@ -34,7 +54,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_2mnvv")
 }],
 "loop": true,
-"name": &"00",
+"name": &"g_00",
 "speed": 0.0
 }, {
 "frames": [{
@@ -42,7 +62,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ml3ui")
 }],
 "loop": true,
-"name": &"01",
+"name": &"g_01",
 "speed": 0.0
 }, {
 "frames": [{
@@ -50,7 +70,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_yqfy3")
 }],
 "loop": true,
-"name": &"10",
+"name": &"g_10",
 "speed": 0.0
 }, {
 "frames": [{
@@ -58,7 +78,39 @@ animations = [{
 "texture": SubResource("AtlasTexture_re7ms")
 }],
 "loop": true,
-"name": &"11",
+"name": &"g_11",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uas1b")
+}],
+"loop": true,
+"name": &"r_00",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gp3t")
+}],
+"loop": true,
+"name": &"r_01",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrdgy")
+}],
+"loop": true,
+"name": &"r_10",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2wps")
+}],
+"loop": true,
+"name": &"r_11",
 "speed": 0.0
 }]
 
@@ -87,7 +139,7 @@ visible = false
 position = Vector2(3.8147e-06, 0)
 scale = Vector2(0.133333, 0.133333)
 sprite_frames = SubResource("SpriteFrames_io4u0")
-animation = &"11"
+animation = &"g_00"
 
 [node name="Highlight" parent="." instance=ExtResource("3_2mnvv")]
 visible = false

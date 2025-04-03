@@ -29,17 +29,18 @@ func handle_deselect() -> void:
 		selected_structure = null
 
 func _on_structure_selected(structure: Structure) -> void:
-	if selected_structure:
-		deselect_structure(selected_structure)
-	
-	selected_structure = structure
-	highlight_structure(selected_structure)
-	build_menu.hide()
-	if structure is UpgradeableStructure:
-		upgrade_menu.show()
-		upgrade_menu.initialize_buttons(structure)
-	if structure.get_structure_type() == GameData.StructureType.COMMAND:
-		command_menu.show()
+	if structure.is_green:
+		if selected_structure:
+			deselect_structure(selected_structure)
+		
+		selected_structure = structure
+		highlight_structure(selected_structure)
+		build_menu.hide()
+		if structure is UpgradeableStructure:
+			upgrade_menu.show()
+			upgrade_menu.initialize_buttons(structure)
+		if structure.get_structure_type() == GameData.StructureType.COMMAND:
+			command_menu.show()
 
 func highlight_structure(structure: Structure) -> void:
 	structure.find_child("Highlight").show()

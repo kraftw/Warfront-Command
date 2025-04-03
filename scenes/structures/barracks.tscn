@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bamhongeqtc2k"]
+[gd_scene load_steps=20 format=3 uid="uid://bamhongeqtc2k"]
 
 [ext_resource type="Texture2D" uid="uid://dej557oe8sexs" path="res://assets/sprites/green/barracks-GRN_720.png" id="1_a5bx4"]
 [ext_resource type="Script" uid="uid://d0lu055047riq" path="res://scripts/structures/barracks.gd" id="1_il0at"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c3oot1mefbn6" path="res://assets/sprites/green/upgrades/barracks_01-GRN_720.png" id="3_vtfgd"]
 [ext_resource type="Texture2D" uid="uid://6jbokbpx28lq" path="res://assets/sprites/green/upgrades/barracks_10-GRN_720.png" id="4_huf8h"]
 [ext_resource type="Texture2D" uid="uid://b4oog161upm3k" path="res://assets/sprites/green/upgrades/barracks_11-GRN_720.png" id="5_kjkmu"]
+[ext_resource type="Texture2D" uid="uid://bx0lsrundllbc" path="res://assets/sprites/red/barracks-RED_720.png" id="6_huf8h"]
+[ext_resource type="Texture2D" uid="uid://cix3j4kdmxtkd" path="res://assets/sprites/red/upgrades/barracks-01-RED_720.png" id="7_kjkmu"]
+[ext_resource type="Texture2D" uid="uid://ygr5fod61jwm" path="res://assets/sprites/red/upgrades/barracks_10-RED_720.png" id="8_hj5ob"]
+[ext_resource type="Texture2D" uid="uid://g6tcfpilk7e2" path="res://assets/sprites/red/upgrades/barracks_11-RED_720.png" id="9_hjkv8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5bx4"]
 size = Vector2(96, 96)
@@ -26,6 +30,18 @@ region = Rect2(0, 0, 720, 720)
 atlas = ExtResource("5_kjkmu")
 region = Rect2(0, 0, 720, 720)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjkmu"]
+atlas = ExtResource("6_huf8h")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmb8n"]
+atlas = ExtResource("7_kjkmu")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp0cs"]
+atlas = ExtResource("9_hjkv8")
+region = Rect2(0, 0, 720, 720)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mqjjy"]
 animations = [{
 "frames": [{
@@ -33,7 +49,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_tdgdq")
 }],
 "loop": true,
-"name": &"00",
+"name": &"g_00",
 "speed": 0.0
 }, {
 "frames": [{
@@ -41,7 +57,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hj5ob")
 }],
 "loop": true,
-"name": &"01",
+"name": &"g_01",
 "speed": 0.0
 }, {
 "frames": [{
@@ -49,7 +65,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hjkv8")
 }],
 "loop": true,
-"name": &"10",
+"name": &"g_10",
 "speed": 0.0
 }, {
 "frames": [{
@@ -57,7 +73,39 @@ animations = [{
 "texture": SubResource("AtlasTexture_s081r")
 }],
 "loop": true,
-"name": &"11",
+"name": &"g_11",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjkmu")
+}],
+"loop": true,
+"name": &"r_00",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmb8n")
+}],
+"loop": true,
+"name": &"r_01",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_hj5ob")
+}],
+"loop": true,
+"name": &"r_10",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp0cs")
+}],
+"loop": true,
+"name": &"r_11",
 "speed": 0.0
 }]
 
@@ -84,7 +132,7 @@ visible = false
 position = Vector2(-1.52588e-05, -1.52588e-05)
 scale = Vector2(0.133333, 0.133333)
 sprite_frames = SubResource("SpriteFrames_mqjjy")
-animation = &"11"
+animation = &"g_00"
 
 [node name="Highlight" parent="." instance=ExtResource("3_tdgdq")]
 visible = false

@@ -13,11 +13,18 @@ extends Node
 
 
 func generate_command_center():
-	var local_command_center_instance = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
+	# ADD GREEN (PLAYER) COMMAND CENTER
+	var local_command_center_instance: Structure = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
 	local_command_center_instance.position = GameData.PLAYER_COMMAND_CENTER_POSITION
 	add_child(local_command_center_instance)
-	
+	local_command_center_instance.set_sprite(true)
 	SignalHandler.connect_signal(local_command_center_instance, hud, "structure_selected")
+	
+	# ADD RED (ENEMY) COMMAND CENTER
+	local_command_center_instance = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
+	local_command_center_instance.position = GameData.ENEMY_COMMAND_CENTER_POSITION
+	add_child(local_command_center_instance)
+	local_command_center_instance.set_sprite(false)
 
 func _process_game_tick() -> void:
 	gather_resources()

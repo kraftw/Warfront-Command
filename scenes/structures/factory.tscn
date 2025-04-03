@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bdtmod4s1l2o0"]
+[gd_scene load_steps=30 format=3 uid="uid://bdtmod4s1l2o0"]
 
 [ext_resource type="Script" uid="uid://wewpj3fdmyro" path="res://scripts/structures/factory.gd" id="1_0g0nb"]
 [ext_resource type="Texture2D" uid="uid://b10oh5pqdmwva" path="res://assets/sprites/green/factory_static-GRN_720.png" id="1_f655e"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bjy8q1pfspkxx" path="res://scenes/UI/highlight.tscn" id="3_aiq47"]
 [ext_resource type="Texture2D" uid="uid://b48fjlvk5i7qg" path="res://assets/sprites/green/upgrades/factory_10_sheet-GRN_720.png" id="5_ovdge"]
 [ext_resource type="Texture2D" uid="uid://biyly0evfq3fk" path="res://assets/sprites/green/upgrades/factory_11_sheet-GRN_720.png" id="6_iugk6"]
+[ext_resource type="Texture2D" uid="uid://bc1rtj0unyyc8" path="res://assets/sprites/red/factory_sheet-RED_720.png" id="7_f54iw"]
+[ext_resource type="Texture2D" uid="uid://seh23kx8vmob" path="res://assets/sprites/red/upgrades/factory_01_sheet-RED_720.png" id="8_xk8o2"]
+[ext_resource type="Texture2D" uid="uid://ba65ehyfbgu2c" path="res://assets/sprites/red/upgrades/factory_10_sheet-RED_720.png" id="9_37afe"]
+[ext_resource type="Texture2D" uid="uid://466i7y0fc77n" path="res://assets/sprites/red/upgrades/factory_11_sheet-RED_720.png" id="10_v8d70"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0g0nb"]
 size = Vector2(96, 96)
@@ -43,6 +47,38 @@ region = Rect2(0, 0, 720, 720)
 atlas = ExtResource("6_iugk6")
 region = Rect2(720, 0, 720, 720)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xje4i"]
+atlas = ExtResource("7_f54iw")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lisw4"]
+atlas = ExtResource("7_f54iw")
+region = Rect2(720, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7cl0"]
+atlas = ExtResource("8_xk8o2")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kir8a"]
+atlas = ExtResource("8_xk8o2")
+region = Rect2(720, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5g5j"]
+atlas = ExtResource("9_37afe")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml82s"]
+atlas = ExtResource("9_37afe")
+region = Rect2(720, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eietc"]
+atlas = ExtResource("10_v8d70")
+region = Rect2(0, 0, 720, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmwtd"]
+atlas = ExtResource("10_v8d70")
+region = Rect2(720, 0, 720, 720)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_aiq47"]
 animations = [{
 "frames": [{
@@ -53,7 +89,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_0lo46")
 }],
 "loop": true,
-"name": &"00",
+"name": &"g_00",
 "speed": 2.0
 }, {
 "frames": [{
@@ -64,7 +100,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_iugk6")
 }],
 "loop": true,
-"name": &"01",
+"name": &"g_01",
 "speed": 2.0
 }, {
 "frames": [{
@@ -75,7 +111,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_xk8o2")
 }],
 "loop": true,
-"name": &"10",
+"name": &"g_10",
 "speed": 2.0
 }, {
 "frames": [{
@@ -86,8 +122,52 @@ animations = [{
 "texture": SubResource("AtlasTexture_v8d70")
 }],
 "loop": true,
-"name": &"11",
+"name": &"g_11",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xje4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lisw4")
+}],
+"loop": true,
+"name": &"r_00",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7cl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kir8a")
+}],
+"loop": true,
+"name": &"r_01",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5g5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml82s")
+}],
+"loop": true,
+"name": &"r_10",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eietc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmwtd")
+}],
+"loop": true,
+"name": &"r_11",
+"speed": 0.0
 }]
 
 [node name="Factory" type="Area2D"]
@@ -113,7 +193,7 @@ visible = false
 position = Vector2(4.06901e-06, -5.72205e-06)
 scale = Vector2(0.133333, 0.133333)
 sprite_frames = SubResource("SpriteFrames_aiq47")
-animation = &"11"
+animation = &"g_00"
 
 [node name="Highlight" parent="." instance=ExtResource("3_aiq47")]
 visible = false
