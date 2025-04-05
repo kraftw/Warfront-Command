@@ -12,8 +12,23 @@ var parent: Node = null
 func _ready() -> void:
 	parent = get_parent()
 
-func _process(_delta: float) -> void:
-	if parent.current_state == GameData.UnitState.RETREATING:
+func set_command(command: GameData.UnitState):
+	match command:
+		GameData.UnitState.ATTACKING:
+			attack()
+		GameData.UnitState.DEFENDING:
+			defend()
+		GameData.UnitState.RETREATING:
+			retreat()
+
+func attack():
+	pass
+
+func defend():
+	pass
+
+func retreat():
+	while parent.current_state == GameData.UnitState.RETREATING:
 		if position == GameData.PLAYER_COMMAND_CENTER_POSITION:
 			if is_colonel:
 				parent.active_colonel -= 1

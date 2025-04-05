@@ -1,61 +1,94 @@
 extends Node
 
 
+@onready var spawn_timer = $"../SpawnTimer"
 @onready var UIHandler = $"../HUD"
 @onready var StructureHandler = $"../Structures"
 
+@export var spawn_cooldown := 0.5
+@export var attack_position: Vector2
+
 var active_infantry: int = 0
 var active_colonel: int = 0
+var spawn_queue := [] # HOLDS STRINGS EQUAL TO "infantry" AND "colonel
 var current_state: GameData.UnitState = GameData.UnitState.RETREATING
 var unit_scene: PackedScene = load("res://scenes/units/unit.tscn")
-var spawn_cooldown: float = 0.5
 
 
 func _ready() -> void:
 	SignalHandler.connect_signal(UIHandler, self, "command_received")
 
-func _process(_delta: float) -> void:
-	match current_state:
-		GameData.UnitState.ATTACKING:
-			attack()
-		GameData.UnitState.DEFENDING:
-			defend()
-		GameData.UnitState.RETREATING:
-			retreat()
-
-func attack():
-	while active_colonel < PlayerData.colonel_count:
-		spawn_units(true)
-	while active_infantry < PlayerData.infantry_count:
-		spawn_units(false)
-
-func defend():
-	while active_colonel < PlayerData.colonel_count:
-		spawn_units(true)
-	while active_infantry < PlayerData.infantry_count:
-		spawn_units(false)
-
-func retreat():
-	pass
-
-func spawn_units(is_colonel: bool):
-	if fmod(GameData.time_elapsed, spawn_cooldown) == 0:
-		var unit_instance: Unit = unit_scene.instantiate()
-		self.add_child(unit_instance)
-		unit_instance.position = GameData.PLAYER_COMMAND_CENTER_POSITION
-		unit_instance.is_green = true
-		if is_colonel:
-			unit_instance.is_colonel = true
-			active_colonel += 1
-		if not is_colonel:
-			active_infantry += 1
-		unit_instance.set_sprite()
-
 func _on_command_received(command: String) -> void:
 	match command:
 		"ATTACK":
 			current_state = GameData.UnitState.ATTACKING
+			attack()
 		"DEFEND":
 			current_state = GameData.UnitState.DEFENDING
+			defend()
 		"RETREAT":
 			current_state = GameData.UnitState.RETREATING
+			retreat()
+
+func attack():
+	queue_units()
+	for unit in get_tree().get_nodes_in_group("units"):
+		unit.attack()
+
+func defend():
+	queue_units()
+	for unit in get_tree().get_nodes_in_group("units"):
+		unit.defend()
+
+func retreat():
+	spawn_queue.clear()
+	spawn_timer.stop()
+	for unit in get_tree().get_nodes_in_group("units"):
+		unit.retreat()
+
+func queue_units():
+	spawn_queue.clear()
+	
+	var colonels_to_spawn = PlayerData.colonel_count - active_colonel
+	for c in colonels_to_spawn:
+		spawn_queue.append("colonel")
+	
+	var infantry_to_spawn = PlayerData.infantry_count - active_infantry
+	for i in infantry_to_spawn:
+		spawn_queue.append("infantry")
+	
+	if spawn_queue.size() > 1000:
+		push_warning("UnitHandler: oversized spawn queue size")
+	
+	if spawn_queue.size() > 0:
+		spawn_timer.start(spawn_cooldown)
+
+func spawn_units(is_colonel: bool) -> Unit:
+	var unit_instance: Unit = unit_scene.instantiate()
+	self.add_child(unit_instance)
+	
+	unit_instance.add_to_group("units")
+	unit_instance.position = GameData.PLAYER_COMMAND_CENTER_POSITION
+	unit_instance.is_green = true
+	
+	if is_colonel:
+		unit_instance.is_colonel = true
+		unit_instance.add_to_group("colonels")
+		active_colonel += 1
+	if not is_colonel:
+		unit_instance.add_to_group("infantry")
+		active_infantry += 1
+		
+	unit_instance.set_sprite()
+	
+	
+	return unit_instance
+
+func _on_spawn_timer_timeout() -> void:
+	if spawn_queue.is_empty():
+		spawn_timer.stop()
+		return
+	
+	var type = spawn_queue.pop_front()
+	var is_colonel = type == "colonel"
+	spawn_units(is_colonel)

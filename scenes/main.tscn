@@ -91,7 +91,10 @@ position = Vector2(640, 360)
 
 [node name="GameTimer" type="Timer" parent="."]
 
+[node name="SpawnTimer" type="Timer" parent="."]
+
 [connection signal="pressed" from="HUD/PauseButton" to="HUD" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="HUD/ExitButton" to="HUD" method="_on_exit_button_pressed"]
 [connection signal="mouse_entered" from="Background" to="BuildHandler" method="_on_mouse_entered_player_side"]
 [connection signal="mouse_exited" from="Background" to="BuildHandler" method="_on_mouse_exited_player_side"]
+[connection signal="timeout" from="SpawnTimer" to="Units" method="_on_spawn_timer_timeout"]

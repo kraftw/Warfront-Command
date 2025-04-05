@@ -70,7 +70,7 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 			},
 			1: {
 				"name": "Machine Guns",
-				"cost": 325,
+				"cost": 350,
 				"icon": preload("res://assets/sprites/green/upgrades/defense_tower_01-GRN_720.png"),
 			},
 		},
@@ -87,7 +87,7 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 			},
 			1: {
 				"name": "Nuclear Power",
-				"cost": 725,
+				"cost": 750,
 				"icon": preload("res://assets/sprites/green/upgrades/factory_01_static-GRN_720.png"),
 			},
 		},
