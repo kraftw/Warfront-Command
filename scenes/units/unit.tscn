@@ -59,7 +59,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6k8ya"]
-radius = 24.0
+radius = 16.0
 
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1
@@ -67,8 +67,8 @@ script = ExtResource("1_6e3tn")
 metadata/_custom_type_script = "uid://bq0xxorhs6qbf"
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(9.53674e-07, 4.76837e-07)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-1.90735e-06, -7.15256e-07)
+scale = Vector2(0.0666667, 0.0666667)
 sprite_frames = SubResource("SpriteFrames_wy2ti")
 animation = &"green_infantry"
 

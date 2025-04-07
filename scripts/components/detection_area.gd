@@ -1,8 +1,8 @@
 extends Area2D
 
-@export var base_defense_tower_detection_radius: float = 64.0
-@export var upgraded_defense_tower_detection_radius: float = 96.0
-@export var unit_detection_radius: float = 32.0
+@export var base_defense_tower_detection_radius: float = 112.0
+@export var upgraded_defense_tower_detection_radius: float = 168.0
+@export var unit_detection_radius: float = 56.0
 
 @onready var detection_shape: CircleShape2D = $CollisionShape2D.shape
 

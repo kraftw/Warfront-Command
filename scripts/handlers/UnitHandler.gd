@@ -2,10 +2,11 @@ extends Node
 
 
 @onready var spawn_timer = $"../SpawnTimer"
+@onready var queue_timer = $"../QueueTimer" # CHECKS UNIT COUNT PERIODICALLY
 @onready var UIHandler = $"../HUD"
 @onready var StructureHandler = $"../Structures"
 
-@export var spawn_cooldown := 0.5
+@export var spawn_cooldown: float = 1.5
 @export var attack_position: Vector2
 
 var active_infantry: int = 0
@@ -22,12 +23,15 @@ func _on_command_received(command: String) -> void:
 	match command:
 		"ATTACK":
 			current_state = GameData.UnitState.ATTACKING
+			queue_timer.start()
 			attack()
 		"DEFEND":
 			current_state = GameData.UnitState.DEFENDING
+			queue_timer.start()
 			defend()
 		"RETREAT":
 			current_state = GameData.UnitState.RETREATING
+			queue_timer.stop()
 			retreat()
 
 func attack():
@@ -61,6 +65,10 @@ func queue_units():
 		push_warning("UnitHandler: oversized spawn queue size")
 	
 	if spawn_queue.size() > 0:
+		var first_type = spawn_queue.pop_front()
+		var is_colonel = first_type == "colonel"
+		spawn_units(is_colonel)
+		
 		spawn_timer.start(spawn_cooldown)
 
 func spawn_units(is_colonel: bool) -> Unit:
@@ -81,6 +89,13 @@ func spawn_units(is_colonel: bool) -> Unit:
 		
 	unit_instance.set_sprite()
 	
+	match current_state:
+		GameData.UnitState.ATTACKING:
+			unit_instance.attack()
+		GameData.UnitState.DEFENDING:
+			unit_instance.defend()
+		GameData.UnitState.RETREATING:
+			unit_instance.retreat()
 	
 	return unit_instance
 
@@ -92,3 +107,9 @@ func _on_spawn_timer_timeout() -> void:
 	var type = spawn_queue.pop_front()
 	var is_colonel = type == "colonel"
 	spawn_units(is_colonel)
+
+func _on_queue_timer_timeout() -> void:
+	if current_state == GameData.UnitState.ATTACKING:
+		attack()
+	elif current_state == GameData.UnitState.DEFENDING:
+		defend()

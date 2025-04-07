@@ -6,8 +6,8 @@ extends Node
 @export var base_factory_generation_amount: int = 25
 @export var upgraded_factory_generation_amount: int = 50
 
-@export var base_barracks_interval: float = 3.5
-@export var upgraded_barracks_interval: float = 2.0
+@export var base_barracks_interval: float = 6.0
+@export var upgraded_barracks_interval: float = 4.0
 
 @onready var hud = $"../HUD"
 
