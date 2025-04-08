@@ -3,37 +3,18 @@ extends Node
 var is_game_running: bool = true
 var time_elapsed: float = 0.0
 
-#Collision Layers (ODD):
-	#1: Default
-	#3: Structures (Non-Defense Tower)
-	#5: Placeable Checking (Background)
-	#7: Player Units & Defense Towers
-	#9: Enemy Units & Defense Towers
-#Collision Masks (EVEN):
-	#2: Default
-	#4: Structures (Non-Defense Tower)
-	#6: Placeable Checking (Background)
-	#8: Enemy Units & Defense Towers
-	#10: Player Units & Defense Towers
-
 # NAMED BASED ON WHAT IT IS / WHAT IT IS CHECKING FOR
-enum CollisionLayers { UNIT, PASSIVE, BOUNDS, PLAYER, ENEMY }
-enum CollisionMasks { UNIT, PASSIVE, BOUNDS, ENEMY, PLAYER }
+enum CollisionLayers { PLAYER, ENEMY }
+enum CollisionMasks { ENEMY, PLAYER }
 
 const COLLISION_LAYERS = {
-	CollisionLayers.UNIT: 1,
-	CollisionLayers.PASSIVE: 3,
-	CollisionLayers.BOUNDS: 5,
 	CollisionLayers.PLAYER: 7,
-	CollisionLayers.ENEMY: 9,
+	CollisionLayers.ENEMY: 8,
 }
 
 const COLLISION_MASKS = {
-	CollisionMasks.UNIT: 2,
-	CollisionMasks.PASSIVE: 4,
-	CollisionMasks.BOUNDS: 6,
-	CollisionMasks.PLAYER: 8,
-	CollisionMasks.ENEMY: 10,
+	CollisionMasks.PLAYER: 7,
+	CollisionMasks.ENEMY: 8,
 }
 
 const PLAYER_COMMAND_CENTER_POSITION: Vector2 = Vector2(224, 544)

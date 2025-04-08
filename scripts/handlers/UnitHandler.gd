@@ -36,18 +36,18 @@ func _on_command_received(command: String) -> void:
 
 func attack():
 	queue_units()
-	for unit in get_tree().get_nodes_in_group("units"):
+	for unit in get_tree().get_nodes_in_group("player_units"):
 		unit.attack()
 
 func defend():
 	queue_units()
-	for unit in get_tree().get_nodes_in_group("units"):
+	for unit in get_tree().get_nodes_in_group("player_units"):
 		unit.defend()
 
 func retreat():
 	spawn_queue.clear()
 	spawn_timer.stop()
-	for unit in get_tree().get_nodes_in_group("units"):
+	for unit in get_tree().get_nodes_in_group("player_units"):
 		unit.retreat()
 
 func queue_units():
@@ -77,7 +77,7 @@ func spawn_units(is_colonel: bool) -> Unit:
 	var unit_instance: Unit = unit_scene.instantiate()
 	self.add_child(unit_instance)
 	
-	unit_instance.add_to_group("units")
+	unit_instance.add_to_group("player_units")
 	unit_instance.position = GameData.PLAYER_COMMAND_CENTER_POSITION
 	unit_instance.is_green = true
 	

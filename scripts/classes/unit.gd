@@ -21,15 +21,6 @@ var is_retreating: bool = false
 func _ready() -> void:
 	parent = get_parent()
 
-func set_command(command: GameData.UnitState):
-	match command:
-		GameData.UnitState.ATTACKING:
-			attack()
-		GameData.UnitState.DEFENDING:
-			defend()
-		GameData.UnitState.RETREATING:
-			retreat()
-
 func attack():
 	is_retreating = false
 	move_to(GameData.ENEMY_COMMAND_CENTER_POSITION, attack_threshold)
