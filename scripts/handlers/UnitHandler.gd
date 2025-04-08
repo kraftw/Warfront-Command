@@ -51,7 +51,8 @@ func retreat():
 		unit.retreat()
 
 func queue_units():
-	spawn_queue.clear()
+	if not spawn_queue.is_empty() or not spawn_timer.is_stopped():
+		return
 	
 	var colonels_to_spawn = PlayerData.colonel_count - active_colonel
 	for c in colonels_to_spawn:
@@ -69,7 +70,8 @@ func queue_units():
 		var is_colonel = first_type == "colonel"
 		spawn_units(is_colonel)
 		
-		spawn_timer.start(spawn_cooldown)
+		if spawn_timer.is_stopped():
+			spawn_timer.start(spawn_cooldown)
 
 func spawn_units(is_colonel: bool) -> Unit:
 	var unit_instance: Unit = unit_scene.instantiate()
@@ -107,9 +109,9 @@ func _on_spawn_timer_timeout() -> void:
 	var type = spawn_queue.pop_front()
 	var is_colonel = type == "colonel"
 	spawn_units(is_colonel)
+	
+	if not spawn_queue.is_empty():
+		spawn_timer.start(spawn_cooldown)
 
 func _on_queue_timer_timeout() -> void:
-	if current_state == GameData.UnitState.ATTACKING:
-		attack()
-	elif current_state == GameData.UnitState.DEFENDING:
-		defend()
+	queue_units()

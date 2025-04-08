@@ -12,7 +12,17 @@ signal enemy_entered(enemy)
 signal enemy_exited(enemy)
 
 func _ready() -> void:
+	setup_detection_area()
+
+#region SETUP FUNCTIONS
+func setup_detection_area() -> void:
 	parent = get_parent()
+	await  get_tree().process_frame
+	set_detection_radius()
+	if parent.is_green:
+		set_player_collisions()
+	elif not parent.is_green:
+		set_enemy_collisions()
 
 func set_detection_radius() -> void:
 	if parent.is_in_group("dt_00") or parent.is_in_group("dt_01"):
@@ -21,7 +31,7 @@ func set_detection_radius() -> void:
 	elif parent.is_in_group("dt_10") or parent.is_in_group("dt_11"):
 		detection_shape.radius = upgraded_defense_tower_detection_radius
 		set_player_collisions()
-	elif parent.is_in_group("player_units"):
+	elif parent.is_in_group("units"):
 		detection_shape.radius = unit_detection_radius
 		set_player_collisions()
 	else:
@@ -30,6 +40,11 @@ func set_detection_radius() -> void:
 func set_player_collisions() -> void:
 	self.collision_layer = GameData.get_collision_layer_index(GameData.CollisionLayers.PLAYER)
 	self.collision_mask = GameData.get_collision_mask_index(GameData.CollisionMasks.ENEMY)
+
+func set_enemy_collisions() -> void:
+	self.collision_layer = GameData.get_collision_layer_index(GameData.CollisionLayers.ENEMY)
+	self.collision_mask = GameData.get_collision_mask_index(GameData.CollisionMasks.PLAYER)
+#endregion
 
 func _on_area_entered(area: Area2D) -> void:
 	emit_signal("enemy_entered", area)
