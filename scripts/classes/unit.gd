@@ -3,6 +3,8 @@ class_name Unit
 
 
 @onready var sprite: AnimatedSprite2D = $Sprite2D
+@onready var attack_component: AttackComponent = $AttackComponent
+@onready var health_component: HealthComponent = $HealthComponent
 
 @export var speed: float = 65.0
 @export var attack_threshold: float = 64.0 # DISTANCE TO ENEMY COMMAND CENTER BEFORE STOPPING
@@ -16,10 +18,18 @@ var target_position: Vector2
 var distance_threshold: float
 var is_moving: bool = false
 var is_retreating: bool = false
+var stats = GameData.UnitStats
 
 
 func _ready() -> void:
 	parent = get_parent()
+	await get_tree().process_frame
+	configure_stats()
+
+func configure_stats() -> void:
+	var unit_type = "colonel" if is_colonel else "infantry"
+	attack_component.configure(stats[unit_type].damage, stats[unit_type].attack_speed)
+	health_component.configure(stats[unit_type].health)
 
 func attack():
 	is_retreating = false
@@ -33,6 +43,7 @@ func retreat():
 	is_retreating = true
 	move_to(GameData.PLAYER_COMMAND_CENTER_POSITION, retreat_threshold)
 
+#region MOVING FUNCTIONS
 func move_to(pos: Vector2, threshold: float):
 	target_position = pos
 	distance_threshold = threshold
@@ -48,7 +59,9 @@ func _physics_process(_delta: float) -> void:
 			is_moving = false
 			if is_retreating:
 				handle_despawn()
+#endregion
 
+#region HELPER FUNCTIONS
 func handle_despawn():
 	if is_colonel:
 		parent.active_colonel -= 1
@@ -60,3 +73,4 @@ func set_sprite() -> void:
 	var color = "green" if is_green else "red"
 	var unit_type = "colonel" if is_colonel else "infantry"
 	sprite.play(color + "_" + unit_type)
+#endregion

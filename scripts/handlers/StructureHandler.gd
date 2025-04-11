@@ -6,29 +6,35 @@ extends Node
 @export var base_factory_generation_amount: int = 25
 @export var upgraded_factory_generation_amount: int = 50
 
-@export var base_barracks_interval: float = 6.0
-@export var upgraded_barracks_interval: float = 4.0
+@export var base_barracks_interval: float = 10.0
+@export var upgraded_barracks_interval: float = 8.0
 
 @onready var hud = $"../HUD"
 
 
-func generate_command_center():
-	# ADD GREEN (PLAYER) COMMAND CENTER
-	var local_command_center_instance: Structure = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
-	local_command_center_instance.position = GameData.PLAYER_COMMAND_CENTER_POSITION
-	add_child(local_command_center_instance)
-	local_command_center_instance.collision_layer = GameData.get_collision_layer_index(GameData.CollisionLayers.PLAYER)
-	local_command_center_instance.collision_mask = 0
-	local_command_center_instance.set_sprite(true)
-	SignalHandler.connect_signal(local_command_center_instance, hud, "structure_selected")
+func generate_command_centers():
+	generate_command_center(true)
+	generate_command_center(false)
+
+func generate_command_center(is_green: bool) -> void:
+	var position = GameData.PLAYER_COMMAND_CENTER_POSITION if is_green else GameData.ENEMY_COMMAND_CENTER_POSITION
+	var owner_string: String = "player" if is_green else "enemy"
+	var collision_layer = GameData.CollisionLayers.PLAYER if is_green else GameData.CollisionLayers.ENEMY
+	var collision_mask = GameData.CollisionLayers.ENEMY if is_green else GameData.CollisionLayers.PLAYER
 	
-	# ADD RED (ENEMY) COMMAND CENTER
-	local_command_center_instance = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
-	local_command_center_instance.position = GameData.ENEMY_COMMAND_CENTER_POSITION
+	var local_command_center_instance: Structure = GameData.get_structure_scene(GameData.StructureType.COMMAND).instantiate()
+	local_command_center_instance.position = position
 	add_child(local_command_center_instance)
-	local_command_center_instance.collision_layer = GameData.get_collision_layer_index(GameData.CollisionLayers.ENEMY)
-	local_command_center_instance.collision_mask = 0
-	local_command_center_instance.set_sprite(false)
+	
+	local_command_center_instance.add_to_group(owner_string + "_destructibles")
+	local_command_center_instance.add_to_group(owner_string + "_command_center")
+	local_command_center_instance.collision_layer = GameData.get_collision_layer_index(collision_layer)
+	local_command_center_instance.collision_mask = GameData.get_collision_mask_index(collision_mask)
+	local_command_center_instance.get_node("HealthComponent").configure(GameData.StructureStats["command_center"].health)
+	local_command_center_instance.set_sprite(is_green)
+	
+	if is_green:
+		SignalHandler.connect_signal(local_command_center_instance, hud, "structure_selected")
 
 func _process_game_tick() -> void:
 	gather_resources()

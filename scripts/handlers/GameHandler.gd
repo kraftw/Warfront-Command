@@ -18,7 +18,7 @@ func _process(_delta) -> void:
 func start_game():
 	game_running = true
 	start_game_tick()
-	StructureHandler.generate_command_center()
+	StructureHandler.generate_command_centers()
 	SignalHandler.connect_signal(UIHandler, self, "pause_button_pressed")
 
 func start_game_tick() -> void:

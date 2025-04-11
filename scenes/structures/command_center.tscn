@@ -1,10 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://wwo56ljpy4hy"]
+[gd_scene load_steps=47 format=3 uid="uid://wwo56ljpy4hy"]
 
 [ext_resource type="Script" uid="uid://5xe8ixctkk7o" path="res://scripts/structures/command_center.gd" id="1_6amnb"]
 [ext_resource type="Texture2D" uid="uid://b8507c1fbusmt" path="res://assets/sprites/neutral/Poof.png" id="2_knpu2"]
 [ext_resource type="Texture2D" uid="uid://cnkhmkmyudlt0" path="res://assets/sprites/green/command_center_sheet-GRN_720.png" id="2_phexf"]
 [ext_resource type="Texture2D" uid="uid://b0yahj07y2r5b" path="res://assets/sprites/red/command_center_sheet-RED_720.png" id="3_knpu2"]
 [ext_resource type="PackedScene" uid="uid://bjy8q1pfspkxx" path="res://scenes/UI/highlight.tscn" id="3_sedpd"]
+[ext_resource type="Script" uid="uid://bojn5ihoe85wb" path="res://scripts/components/health_component.gd" id="6_7ttdl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knpu2"]
 size = Vector2(96, 96)
@@ -309,3 +310,7 @@ animation = &"green"
 
 [node name="Highlight" parent="." instance=ExtResource("3_sedpd")]
 visible = false
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_7ttdl")
+metadata/_custom_type_script = "uid://bojn5ihoe85wb"

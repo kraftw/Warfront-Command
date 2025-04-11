@@ -1,12 +1,14 @@
-[gd_scene load_steps=44 format=3 uid="uid://dhf4svtri3nd0"]
+[gd_scene load_steps=46 format=3 uid="uid://dhf4svtri3nd0"]
 
 [ext_resource type="Script" uid="uid://bq0xxorhs6qbf" path="res://scripts/classes/unit.gd" id="1_6e3tn"]
 [ext_resource type="Texture2D" uid="uid://b8507c1fbusmt" path="res://assets/sprites/neutral/Poof.png" id="2_44d7s"]
-[ext_resource type="PackedScene" uid="uid://dj16t4l5313f7" path="res://scenes/detection_area.tscn" id="2_cx6aj"]
+[ext_resource type="PackedScene" uid="uid://dj16t4l5313f7" path="res://scenes/components/detection_component.tscn" id="2_cx6aj"]
 [ext_resource type="Texture2D" uid="uid://b3vkbobmyw0f6" path="res://assets/sprites/green/colonel-GRN_480.png" id="2_rk2mp"]
 [ext_resource type="Texture2D" uid="uid://cfflgkj4pjfny" path="res://assets/sprites/green/infantry-GRN_480.png" id="3_44d7s"]
 [ext_resource type="Texture2D" uid="uid://b577noxe4vtue" path="res://assets/sprites/red/colonel-RED_480.png" id="4_fe0lq"]
 [ext_resource type="Texture2D" uid="uid://b3uhe8li4gpnw" path="res://assets/sprites/red/infantry-RED_480.png" id="5_vewqn"]
+[ext_resource type="Script" uid="uid://beiaadmvmrshv" path="res://scripts/components/attack_component.gd" id="8_vewqn"]
+[ext_resource type="PackedScene" uid="uid://cmqvps8xmchuw" path="res://scenes/components/health_component.tscn" id="9_vewqn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fe0lq"]
 atlas = ExtResource("2_44d7s")
@@ -292,3 +294,9 @@ animation = &"green_infantry"
 shape = SubResource("CircleShape2D_6k8ya")
 
 [node name="DetectionArea" parent="." instance=ExtResource("2_cx6aj")]
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("8_vewqn")
+metadata/_custom_type_script = "uid://beiaadmvmrshv"
+
+[node name="HealthComponent" parent="." instance=ExtResource("9_vewqn")]

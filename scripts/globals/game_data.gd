@@ -1,8 +1,11 @@
 extends Node
 
+#region GAME DATA
 var is_game_running: bool = true
 var time_elapsed: float = 0.0
+#endregion
 
+#region COLLISION DATA
 # NAMED BASED ON WHAT IT IS / WHAT IT IS CHECKING FOR
 enum CollisionLayers { PLAYER, ENEMY }
 enum CollisionMasks { ENEMY, PLAYER }
@@ -16,10 +19,14 @@ const COLLISION_MASKS = {
 	CollisionMasks.PLAYER: 7,
 	CollisionMasks.ENEMY: 8,
 }
+#endregion
 
+#region POSITION DATA
 const PLAYER_COMMAND_CENTER_POSITION: Vector2 = Vector2(224, 544)
 const ENEMY_COMMAND_CENTER_POSITION: Vector2 = Vector2(1056, 176)
+#endregion
 
+#region STRUCTURE DATA
 enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 
 @export var structures = {
@@ -79,19 +86,24 @@ enum StructureType { ATTACK, DEFENSE, RESOURCE, COMMAND }
 		"scene": preload("res://scenes/structures/command_center.tscn"),
 	},
 }
+#endregion
 
-enum UnitType { INFANTRY, COLONEL }
-
+#region UNIT DATA
 enum UnitState { ATTACKING, DEFENDING, RETREATING }
+#endregion
 
-@export var units = {
-	UnitType.INFANTRY: {
-		
-	},
-	UnitType.COLONEL: {
-		
-	},
+#region STATS DATA
+const UnitStats = {
+	"infantry": { "damage": 5.0, "attack_speed": 1.0, "health": 20.0 },
+	"colonel": { "damage": 15.0, "attack_speed": 2.5, "health": 65.0 },
 }
+
+const StructureStats = {
+	"base_dt": { "damage": 10.0, "attack_speed": 1.5, "health": 80.0 },
+	"upgraded_dt": { "damage": 10.0, "attack_speed": 0.5 },
+	"command_center": { "health": 100.0 }
+}
+#endregion
 
 #region GETTER FUNCTIONS
 func get_collision_layer_index(collision_layer: CollisionLayers):

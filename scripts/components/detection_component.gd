@@ -1,5 +1,6 @@
 extends Area2D
 
+
 @export var base_defense_tower_detection_radius: float = 112.0
 @export var upgraded_defense_tower_detection_radius: float = 168.0
 @export var unit_detection_radius: float = 56.0
@@ -7,6 +8,7 @@ extends Area2D
 @onready var detection_shape: CircleShape2D = $CollisionShape2D.shape
 
 var parent: Node = null
+var attack_component: AttackComponent = null
 
 
 func _ready() -> void:
@@ -16,6 +18,7 @@ func _ready() -> void:
 func setup_detection_area() -> void:
 	parent = get_parent()
 	await get_tree().process_frame
+	attack_component = parent.get_node_or_null("AttackComponent")
 	set_detection_radius()
 	setup_collisions()
 
@@ -42,17 +45,30 @@ func set_player_collisions() -> void:
 func set_enemy_collisions() -> void:
 	collision_layer = GameData.get_collision_layer_index(GameData.CollisionLayers.ENEMY)
 	collision_mask = GameData.get_collision_mask_index(GameData.CollisionMasks.PLAYER)
-
 #endregion
 
-func _on_area_entered(area: Area2D) -> void:
-	print(area.name, " entered")
-	print("		layer:", area.collision_layer)
-	print("		mask:", area.collision_mask)
-	pass
+func _on_enemy_detected(area: Area2D) -> void:
+	if not attack_component:
+		return
+	
+	if parent.is_green:
+		if area.is_in_group("enemy_units") or area.is_in_group("enemy_destructibles"):
+			attack_component.set_target(area)
+			if parent is Unit:
+				parent.is_moving = false
+	elif not parent.is_green:
+		# TODO: ADD AI FUNCTIONALITY LATER
+		pass
 
-func _on_area_exited(area: Area2D) -> void:
-	print(area.name, " exited")
-	print("		layer:", area.collision_layer)
-	print("		mask:", area.collision_mask)
-	pass
+
+func _on_enemy_lost(area: Area2D) -> void:
+	if not attack_component:
+		return
+	
+	if parent.is_green:
+		if area.is_in_group("enemy_units") or area.is_in_group("enemy_destructibles"):
+			if attack_component.target == area:
+				attack_component.clear_target()
+	elif not parent.is_green:
+		# TODO: ADD AI FUNCTIONALITY LATER
+		pass

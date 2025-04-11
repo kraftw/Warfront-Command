@@ -52,6 +52,10 @@ func set_upgrade(upgrade_index) -> void:
 			has_upgrade_2 = true
 			handle_animation()
 			sell_value += GameData.get_upgrade_cost(structure_type, upgrade_index)
+			if structure_type == GameData.StructureType.DEFENSE:
+				var attack_component: AttackComponent = get_node("AttackComponent")
+				var stats = GameData.StructureStats["upgraded_dt"]
+				attack_component.configure(stats.damage, stats.attack_speed)
 	
 	update_groups()
 
