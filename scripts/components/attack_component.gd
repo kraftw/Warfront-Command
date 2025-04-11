@@ -22,7 +22,6 @@ func handle_attack(delta: float) -> void:
 	
 	time_elapsed_since_attack += delta
 	if time_elapsed_since_attack >= 1.0 / attack_speed:
-		print("perform attack")
 		perform_attack()
 		time_elapsed_since_attack = 0.0
 
@@ -31,7 +30,6 @@ func perform_attack():
 		target_health.take_damage(damage)
 
 func set_target(enemy: Node) -> void:
-	print(enemy)
 	var health_component = enemy.get_node_or_null("HealthComponent")
 	if health_component:
 		target = enemy
