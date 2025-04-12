@@ -2,8 +2,7 @@ extends Control
 
 @onready var upgrade_button_1 = $MainContainer/MarginContainer/HBoxContainer/UpgradeButton1
 @onready var upgrade_button_2 = $MainContainer/MarginContainer/HBoxContainer/UpgradeButton2
-@onready var repair_button = $MainContainer/MarginContainer/HBoxContainer/VBoxContainer/RepairButton
-@onready var sell_button = $MainContainer/MarginContainer/HBoxContainer/VBoxContainer/SellButton
+@onready var sell_button = $MainContainer/MarginContainer/HBoxContainer/SellButton
 
 var local_structure_type = null
 var selected_structure: UpgradeableStructure = null
@@ -21,7 +20,6 @@ func update_ammo_count() -> void:
 func update_buttons() -> void:
 	if selected_structure:
 		sell_button.text = "Sell Value: " + str(selected_structure.get_sell_value())
-		repair_button.text = "Repair Cost: " + str(selected_structure.get_repair_cost()) # replace 0 with building health eventually
 		if selected_structure.has_upgrade_1:
 			upgrade_button_1.disabled = true
 		else:

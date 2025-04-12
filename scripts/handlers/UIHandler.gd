@@ -68,7 +68,7 @@ func _on_upgrade_button_pressed(upgrade_index: int) -> void:
 			PlayerData.ammo_count -= GameData.get_upgrade_cost(selected_structure.structure_type, upgrade_index)
 			selected_structure.set_upgrade(upgrade_index)
 
-func _on_sell_button_pressed(structure: Structure) -> void:
+func _on_sell_button_pressed(structure: UpgradeableStructure) -> void:
 	PlayerData.ammo_count += structure.get_sell_value()
 	deselect_structure(structure)
 	structure.queue_free()

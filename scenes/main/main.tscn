@@ -100,5 +100,5 @@ position = Vector2(640, 360)
 [connection signal="mouse_entered" from="Background" to="BuildHandler" method="_on_mouse_entered_player_side"]
 [connection signal="mouse_exited" from="Background" to="BuildHandler" method="_on_mouse_exited_player_side"]
 [connection signal="timeout" from="SpawnTimer" to="Units" method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="QueueTimer" to="Units" method="_on_queue_timer_timeout"]
 [connection signal="timeout" from="QueueTimer" to="Units" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="QueueTimer" to="Units" method="_on_queue_timer_timeout"]

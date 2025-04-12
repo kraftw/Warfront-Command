@@ -33,13 +33,8 @@ func handle_animation() -> void:
 	elif has_upgrade_2:
 		sprite.play(color + "_01")
 
-#region GETTER FUNCTIONS
 func get_sell_value() -> int:
 	return sell_value
-
-func get_repair_cost() -> int:
-	return repair_cost
-#endregion
 
 #region UPGRADE FUNCTIONS
 func set_upgrade(upgrade_index) -> void:
