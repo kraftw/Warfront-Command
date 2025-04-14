@@ -10,7 +10,6 @@ var selected_structure: Structure = null
 var active_units: int = 0
 
 signal command_received(command: String)
-signal pause_button_pressed()
 
 
 func _ready() -> void:
@@ -83,10 +82,4 @@ func _on_command_button_pressed(command: String) -> void:
 			emit_signal("command_received", command)
 		_:
 			print("UIHandler: invalid command: " + command)
-
-func _on_pause_button_pressed() -> void:
-	emit_signal("pause_button_pressed")
-
-func _on_exit_button_pressed() -> void:
-	get_tree().quit()
 #endregion

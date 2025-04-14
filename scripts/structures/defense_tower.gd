@@ -6,9 +6,11 @@ extends UpgradeableStructure
 
 var stats = GameData.StructureStats["base_dt"]
 
-func _init() -> void:
+func _ready() -> void:
 	structure_type = GameData.StructureType.DEFENSE
+	super._ready()
 	type_abbreviation = "dt"
+	await get_tree().process_frame
 	configure_stats()
 
 func configure_stats() -> void:

@@ -3,6 +3,7 @@ extends Node2D
 
 @export var tick_interval: float = 0.5
 @onready var game_timer = $GameTimer
+@onready var game_label = $GameLabel
 @onready var BuildHandler = $BuildHandler
 @onready var StructureHandler = $Structures
 @onready var UIHandler = $HUD
@@ -18,8 +19,9 @@ func _process(_delta) -> void:
 func start_game():
 	game_running = true
 	start_game_tick()
+	game_label.hide()
 	StructureHandler.generate_command_centers()
-	SignalHandler.connect_signal(UIHandler, self, "pause_button_pressed")
+	StructureHandler.generate_defense_towers()
 
 func start_game_tick() -> void:
 	game_timer.wait_time = tick_interval
@@ -35,6 +37,10 @@ func _process_game_tick() -> void:
 	game_timer.wait_time
 	game_timer.start()
 
-func _on_pause_button_pressed():
-	game_running = !game_running
-	print("Game Running: " + str(game_running))
+func _on_game_won():
+	game_label.show()
+	game_label.text = "YOU WON :)"
+
+func _on_game_lost():
+	game_label.show()
+	game_label.text = "YOU LOST :("

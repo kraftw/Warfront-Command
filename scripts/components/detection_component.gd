@@ -52,13 +52,23 @@ func _on_enemy_detected(area: Area2D) -> void:
 		return
 	
 	if parent.is_green:
-		if area.is_in_group("enemy_units") or area.is_in_group("enemy_destructibles"):
-			attack_component.set_target(area)
+		if area.get_parent().is_in_group("enemy_units") or area.is_in_group("enemy_destructibles"):
 			if parent is Unit:
 				parent.is_moving = false
+			
+			if area.get_parent().is_in_group("enemy_units"):
+				attack_component.set_target(area.get_parent())
+			else:
+				attack_component.set_target(area)
 	elif not parent.is_green:
-		# TODO: ADD AI FUNCTIONALITY LATER
-		pass
+		if area.get_parent().is_in_group("player_units") or area.is_in_group("player_destructibles"):
+			if parent is Unit:
+				parent.is_moving = false
+			
+			if area.get_parent().is_in_group("player_units"):
+				attack_component.set_target(area.get_parent())
+			else:
+				attack_component.set_target(area)
 
 
 func _on_enemy_lost(area: Area2D) -> void:
@@ -67,8 +77,10 @@ func _on_enemy_lost(area: Area2D) -> void:
 	
 	if parent.is_green:
 		if area.is_in_group("enemy_units") or area.is_in_group("enemy_destructibles"):
-			if attack_component.target == area:
+			if attack_component.target == area or attack_component.target == area.get_parent():
 				attack_component.clear_target()
 	elif not parent.is_green:
-		# TODO: ADD AI FUNCTIONALITY LATER
+		if area.get_parent().is_in_group("player_units") or area.is_in_group("player_destructibles"):
+			if attack_component.target == area or attack_component.target == area.get_parent():
+				attack_component.clear_target()
 		pass

@@ -16,7 +16,6 @@ func _ready() -> void:
 
 func place():
 	set_sprite(true)
-	sprite.play(color + "_00")
 	add_to_group(type_abbreviation + "_00")
 	if type_abbreviation == "dt":
 		find_child("DetectionArea").set_detection_radius()
@@ -24,6 +23,7 @@ func place():
 func set_sprite(is_sprite_green: bool):
 	is_green = is_sprite_green
 	color = "g" if is_green else "r"
+	sprite.play(color + "_00")
 
 func handle_animation() -> void:
 	if has_upgrade_1 and has_upgrade_2:

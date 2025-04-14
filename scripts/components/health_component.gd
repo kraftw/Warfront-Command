@@ -11,6 +11,9 @@ class_name HealthComponent
 var max_health: float = 100.0
 var current_health: float = 100.0
 
+signal game_won()
+signal game_lost()
+
 
 func configure(new_max_health: float) -> void:
 	max_health = new_max_health
@@ -23,6 +26,12 @@ func take_damage(amount: float) -> void:
 		die()
 
 func die() -> void:
+	if parent is Structure and parent.structure_type == GameData.StructureType.COMMAND:
+		if parent.is_green:
+			emit_signal("game_lost")
+		elif not parent.is_green:
+			emit_signal("game_won")
+	
 	parent.queue_free()
 
 func handle_health_bar() -> void:

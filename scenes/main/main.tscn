@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://y8yi2do7rvtc"]
+[gd_scene load_steps=10 format=3 uid="uid://y8yi2do7rvtc"]
 
 [ext_resource type="Script" uid="uid://dpaxe55cna383" path="res://scripts/handlers/GameHandler.gd" id="1_blune"]
 [ext_resource type="Script" uid="uid://ghqtcl3k6vq" path="res://scripts/handlers/BuildHandler.gd" id="2_th5th"]
@@ -8,9 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://sirb86oah0ww" path="res://scenes/UI/menus/build_menu.tscn" id="6_nvumn"]
 [ext_resource type="PackedScene" uid="uid://bgnap1hl1500g" path="res://scenes/UI/menus/upgrade_menu.tscn" id="7_ou6is"]
 [ext_resource type="PackedScene" uid="uid://0swp50cdjwry" path="res://scenes/UI/menus/command_menu.tscn" id="8_necax"]
-[ext_resource type="Theme" uid="uid://b5jd8uca7qw0h" path="res://assets/themes/button/button.tres" id="9_r4lks"]
-[ext_resource type="Texture2D" uid="uid://sbkfi3uvidk5" path="res://assets/icons/icons8-pause-100.png" id="10_pg34l"]
-[ext_resource type="Texture2D" uid="uid://dyj8vw6hw313g" path="res://assets/icons/icons8-exit-100.png" id="11_m4h2d"]
 [ext_resource type="PackedScene" uid="uid://mjwo0i6g12dy" path="res://scenes/main/background.tscn" id="12_p8abn"]
 
 [node name="Main" type="Node2D"]
@@ -55,37 +52,6 @@ offset_top = 560.0
 offset_right = 256.0
 offset_bottom = 560.0
 
-[node name="PauseButton" type="Button" parent="HUD"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -128.0
-offset_right = 128.0
-offset_bottom = -16.0
-grow_vertical = 0
-theme = ExtResource("9_r4lks")
-icon = ExtResource("10_pg34l")
-icon_alignment = 1
-expand_icon = true
-
-[node name="ExitButton" type="Button" parent="HUD"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -128.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource("9_r4lks")
-icon = ExtResource("11_m4h2d")
-icon_alignment = 1
-expand_icon = true
-
 [node name="Background" parent="." instance=ExtResource("12_p8abn")]
 position = Vector2(640, 360)
 
@@ -95,8 +61,20 @@ position = Vector2(640, 360)
 
 [node name="QueueTimer" type="Timer" parent="."]
 
-[connection signal="pressed" from="HUD/PauseButton" to="HUD" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="HUD/ExitButton" to="HUD" method="_on_exit_button_pressed"]
+[node name="GameLabel" type="Label" parent="."]
+z_index = 2
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 1024.0
+offset_bottom = 512.0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0.215686, 0.215686, 0.215686, 1)
+theme_override_constants/shadow_outline_size = 16
+theme_override_font_sizes/font_size = 96
+text = "YOU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="mouse_entered" from="Background" to="BuildHandler" method="_on_mouse_entered_player_side"]
 [connection signal="mouse_exited" from="Background" to="BuildHandler" method="_on_mouse_exited_player_side"]
 [connection signal="timeout" from="SpawnTimer" to="Units" method="_on_spawn_timer_timeout"]

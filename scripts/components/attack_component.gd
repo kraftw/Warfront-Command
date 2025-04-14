@@ -37,3 +37,5 @@ func set_target(enemy: Node) -> void:
 
 func clear_target() -> void:
 	target_health = null
+	if get_parent() is Unit:
+		get_parent().is_moving = true
